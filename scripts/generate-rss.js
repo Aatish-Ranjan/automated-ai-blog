@@ -82,7 +82,11 @@ async function generateRSSFeed() {
   });
 
   // Write RSS feed to public directory
-  const rssPath = path.join(process.cwd(), 'public', 'rss.xml');
+  const publicDir = path.join(process.cwd(), 'public');
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true });
+  }
+  const rssPath = path.join(publicDir, 'rss.xml');
   fs.writeFileSync(rssPath, feed.rss2());
   
   console.log('RSS feed generated successfully at /public/rss.xml');
