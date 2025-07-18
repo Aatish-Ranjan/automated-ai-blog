@@ -7,13 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
     "lint": "next lint",
     "generate-post": "node scripts/generate-post.js",
     "generate-rss": "node scripts/generate-rss.js",
     "setup": "node scripts/setup.js",
-    "deploy": "npm run export && gh-pages -d out",
-    "build-all": "npm run generate-rss && npm run build && npm run export"
+    "deploy": "npm run build && gh-pages -d out",
+    "build-all": "npm run generate-rss && npm run build"
   },
   "dependencies": {
     "next": "^14.0.0",
