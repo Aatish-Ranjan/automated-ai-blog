@@ -4,7 +4,7 @@
 class LocalAIBlogService {
   constructor() {
     this.baseUrl = 'http://localhost:11434';
-    this.model = 'ai-blog-writer-1b';
+    this.model = 'ai-blog-writer-1b:latest';
   }
 
   async generateBlogPost(request) {

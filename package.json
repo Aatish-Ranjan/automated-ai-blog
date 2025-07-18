@@ -31,7 +31,9 @@
     "model-create": "node scripts/model-manager.js create",
     "model-test": "node scripts/model-manager.js test",
     "model-compare": "node scripts/model-manager.js compare",
-    "model-setup": "node scripts/model-manager.js setup"
+    "model-setup": "node scripts/model-manager.js setup",
+    "seo-enhance": "node scripts/seo-enhancer.js",
+    "seo-audit": "node scripts/seo-audit.js"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",

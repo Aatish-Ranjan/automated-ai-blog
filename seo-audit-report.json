@@ -1,0 +1,78 @@
+{
+  "timestamp": "2025-07-18T20:10:44.307Z",
+  "overallScore": 68,
+  "grade": "C",
+  "technicalSEO": {
+    "score": 100,
+    "issues": [],
+    "improvements": [
+      "✅ Robots.txt exists",
+      "✅ Sitemap configuration exists",
+      "✅ HTTPS enabled (GitHub Pages)",
+      "✅ Responsive design implemented",
+      "✅ App structure exists for meta tag injection",
+      "✅ Clean URL structure (Next.js)"
+    ]
+  },
+  "contentSEO": {
+    "score": 29,
+    "issues": [
+      "❌ 100% of posts missing optimized meta titles",
+      "❌ 100% of posts missing optimized meta descriptions",
+      "❌ 100% of posts are under 1500 words",
+      "❌ 100% of posts lack sufficient internal links",
+      "❌ 100% of posts lack external authority links"
+    ],
+    "improvements": [
+      "🔧 Add meta titles (50-60 characters) to all posts",
+      "🔧 Add meta descriptions (150-160 characters) to all posts",
+      "🔧 Expand short content to 1500+ words for better rankings",
+      "🔧 Add 2-3 internal links to each post",
+      "🔧 Add 1-2 external authority links per post"
+    ]
+  },
+  "performance": {
+    "score": 75,
+    "issues": [
+      "❌ No performance monitoring detected"
+    ],
+    "improvements": [
+      "✅ Image optimization configured",
+      "🔧 Enable gzip compression in Next.js config",
+      "✅ Efficient CSS framework (Tailwind) configured",
+      "✅ Static site generation enabled",
+      "🔧 Implement Core Web Vitals monitoring"
+    ]
+  },
+  "keywords": {
+    "score": 0,
+    "optimizedPosts": 0,
+    "totalPosts": 4,
+    "recommendations": [
+      "🔧 Add target keywords to all posts",
+      "🔧 Optimize keyword density (1-2%)",
+      "🔧 Include keywords in titles naturally"
+    ]
+  },
+  "links": {
+    "score": 0,
+    "totalInternal": 0,
+    "totalExternal": 0,
+    "avgInternalPerPost": 0,
+    "avgExternalPerPost": 0
+  },
+  "recommendations": {
+    "immediate": [
+      "❌ 100% of posts missing optimized meta titles",
+      "❌ 100% of posts missing optimized meta descriptions",
+      "❌ 100% of posts are under 1500 words"
+    ],
+    "longTerm": [
+      "Create topic clusters and pillar pages",
+      "Implement advanced schema markup",
+      "Build high-quality backlinks",
+      "Optimize for Core Web Vitals",
+      "Create linkable assets (tools, guides)"
+    ]
+  }
+}
