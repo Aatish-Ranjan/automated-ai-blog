@@ -53,7 +53,7 @@ jobs:
         
     - name: Build Next.js app
       env:
-        SITE_URL: https://yourdomain.github.io
+        SITE_URL: https://aatish-ranjan.github.io/automated-ai-blog
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         npm run generate-rss
@@ -65,8 +65,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./out
         force_orphan: true
         enable_jekyll: false
-        cname: # Add your custom domain here if you have one
