@@ -1,0 +1,72 @@
+name: Deploy AI Blog (Alternative)
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run daily at 9 AM UTC to generate new content
+    - cron: '1 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Generate new blog post (if scheduled)
+      if: github.event_name == 'schedule'
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        npm run generate-post
+        
+    - name: Commit and push new content (if any)
+      if: github.event_name == 'schedule'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add src/content/
+        if ! git diff --staged --quiet; then
+          git commit -m "Add new AI-generated blog post [skip ci]"
+          git push
+        fi
+        
+    - name: Build Next.js app
+      env:
+        SITE_URL: https://yourdomain.github.io
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        npm run generate-rss
+        npm run build
+        
+    - name: Generate sitemap
+      run: npx next-sitemap
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+        force_orphan: true
+        enable_jekyll: false
+        cname: # Add your custom domain here if you have one
