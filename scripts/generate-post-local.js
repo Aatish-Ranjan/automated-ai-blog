@@ -4,7 +4,18 @@ const path = require('path');
 
 // Ollama local model configuration
 const OLLAMA_BASE_URL = 'http://localhost:11434';
-const MODEL_NAME = 'llama3.1:8b'; // or 'codellama', 'mistral', etc.
+
+// Try multiple models in order of preference (fallback system)
+const MODELS_TO_TRY = [
+  'ai-blog-writer',    // Your custom model (if created)
+  'llama3.1:8b',      // Preferred model
+  'llama3:8b',        // Alternative version
+  'gemma:7b',         // Google's model  
+  'phi3:latest',      // Microsoft's model
+  'phi3:mini',        // Smaller Microsoft model
+  'tinyllama',        // Lightweight fallback
+  'codellama:7b'      // Code-focused model
+];
 
 const TOPICS = [
   'artificial intelligence',
@@ -47,10 +58,43 @@ function generateSlug(title) {
     .replace(/^-+|-+$/g, '');
 }
 
-async function generateWithOllama(prompt) {
+async function getAvailableModel() {
   try {
+    // Get list of available models
+    const response = await axios.get(`${OLLAMA_BASE_URL}/api/tags`);
+    const availableModels = response.data.models.map(m => m.name);
+    
+    console.log('📋 Available models:', availableModels);
+    
+    // Find the first model from our preference list that's available
+    for (const model of MODELS_TO_TRY) {
+      if (availableModels.includes(model)) {
+        console.log(`✅ Using model: ${model}`);
+        return model;
+      }
+    }
+    
+    // If none of our preferred models are available, use the first available one
+    if (availableModels.length > 0) {
+      const fallbackModel = availableModels[0];
+      console.log(`⚠️ Using fallback model: ${fallbackModel}`);
+      return fallbackModel;
+    }
+    
+    throw new Error('No models available. Please download a model first.');
+    
+  } catch (error) {
+    console.error('❌ Error checking available models:', error.message);
+    console.log('💡 Try: ollama pull phi3:mini');
+    throw error;
+  }
+}
+
+async function generateWithOllama(prompt, modelName) {
+  try {
+    console.log(`🤖 Generating with model: ${modelName}`);
     const response = await axios.post(`${OLLAMA_BASE_URL}/api/generate`, {
-      model: MODEL_NAME,
+      model: modelName,
       prompt: prompt,
       stream: false,
       options: {
@@ -67,7 +111,7 @@ async function generateWithOllama(prompt) {
   }
 }
 
-async function generateBlogPost() {
+async function generateBlogPost(modelName) {
   try {
     const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
     const contentType = CONTENT_TYPES[Math.floor(Math.random() * CONTENT_TYPES.length)];
@@ -107,7 +151,7 @@ Output ONLY a valid JSON object with this exact structure:
   "readingTime": "5 min read"
 }`;
 
-    const response = await generateWithOllama(prompt);
+    const response = await generateWithOllama(prompt, modelName);
     
     // Parse the JSON response
     let blogData;
@@ -187,19 +231,30 @@ readingTime: "${blogData.readingTime}"
 
 async function main() {
   try {
+    console.log('🚀 Starting local AI blog generation...');
+    
     // Check if Ollama is running
     await axios.get(`${OLLAMA_BASE_URL}/api/version`);
-    console.log('Ollama is running, generating blog post...');
+    console.log('✅ Ollama is running');
     
-    const result = await generateBlogPost();
-    console.log('Blog post generation completed successfully!');
+    // Get available model
+    const modelName = await getAvailableModel();
+    
+    const result = await generateBlogPost(modelName);
+    console.log('\n🎉 Blog post generation completed successfully!');
     console.log(JSON.stringify(result, null, 2));
+    
   } catch (error) {
     if (error.code === 'ECONNREFUSED') {
-      console.error('Ollama is not running. Please start Ollama first.');
-      console.error('Run: ollama serve');
+      console.error('\n❌ Ollama is not running. Please start Ollama first.');
+      console.error('💡 Run: ollama serve');
+      console.error('💡 Then download a model: ollama pull phi3:mini');
+    } else if (error.message.includes('No models available')) {
+      console.error('\n❌ No models found. Please download a model first.');
+      console.error('💡 Try: ollama pull phi3:mini');
+      console.error('💡 Or check: ollama list');
     } else {
-      console.error('Failed to generate blog post:', error);
+      console.error('\n❌ Failed to generate blog post:', error.message);
     }
     process.exit(1);
   }

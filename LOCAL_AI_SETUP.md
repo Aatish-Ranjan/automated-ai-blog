@@ -12,7 +12,18 @@
 npm install axios  # For local model API calls
 ```
 
-### **Step 3: Test Local Generation**
+### **Step 3: Train Your Custom Model (NEW!)**
+```bash
+# Quick setup and training (recommended)
+npm run quick-setup
+
+# OR manual training methods:
+npm run train-modelfile          # Fast: Enhanced prompts (5 mins)
+npm run train-fine-tune          # Advanced: Deep fine-tuning (30+ mins)
+npm run train-both               # Complete: Both methods
+```
+
+### **Step 4: Test Local Generation**
 ```bash
 # Test with local model
 npm run generate-post-local
@@ -21,7 +32,7 @@ npm run generate-post-local
 npm run auto-blog
 ```
 
-### **Step 4: Set up Windows Task Scheduler**
+### **Step 5: Set up Windows Task Scheduler**
 
 1. **Open Task Scheduler**
 2. **Create Basic Task**:
@@ -31,7 +42,7 @@ npm run auto-blog
    - Action: Start a program
    - Program: `D:\ai-blog-website\scripts\daily-blog-automation.bat`
 
-### **Step 5: Alternative - Cron Job (Linux/Mac)**
+### **Step 6: Alternative - Cron Job (Linux/Mac)**
 ```bash
 # Edit crontab
 crontab -e
@@ -47,7 +58,29 @@ crontab -e
 3. **Git Commands** commit and push to GitHub
 4. **GitHub Actions** automatically deploy to your website
 
+## 🎯 **Training Your Model**
+
+### **Method 1: Quick Enhancement (Recommended)**
+- Uses advanced prompt engineering
+- Creates `ai-blog-writer` custom model
+- **Time:** 5 minutes
+- **Command:** `npm run quick-setup`
+
+### **Method 2: Deep Fine-tuning**
+- Uses your blog data for training
+- LoRA fine-tuning with Python
+- **Time:** 30+ minutes
+- **Command:** `npm run train-fine-tune`
+
+### **Method 3: Complete Training**
+- Combines both methods
+- Best overall results
+- **Command:** `npm run train-both`
+
 ## 🛠️ **Available Commands**
+
+- `npm run quick-setup` - **NEW!** Complete setup + training
+- `npm run train-modelfile` - Create enhanced custom model
 
 - `npm run generate-post-local` - Generate single post with local model
 - `npm run auto-blog` - Full automation (generate + push)

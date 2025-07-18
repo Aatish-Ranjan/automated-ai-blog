@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  basePath: '/automated-ai-blog',
-  assetPrefix: '/automated-ai-blog',
+  // Only use static export for production builds
+  ...(isProduction && {
+    output: 'export',
+    trailingSlash: true,
+    basePath: '/automated-ai-blog',
+    assetPrefix: '/automated-ai-blog',
+  }),
   images: {
     unoptimized: true,
   },
