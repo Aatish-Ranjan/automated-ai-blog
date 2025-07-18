@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://yourdomain.github.io',
+  siteUrl: process.env.SITE_URL || 'https://aatish-ranjan.github.io/automated-ai-blog',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'daily',
