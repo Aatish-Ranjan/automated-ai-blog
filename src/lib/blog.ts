@@ -21,7 +21,7 @@ export interface BlogPost {
 
 export interface BlogPostFrontMatter {
   title: string;
-  excerpt: string;
+  excerpt?: string;
   date: string;
   author: string;
   tags: string[];
@@ -35,6 +35,28 @@ function calculateReadingTime(content: string): string {
   const words = content.trim().split(/\s+/).length;
   const minutes = Math.ceil(words / wordsPerMinute);
   return `${minutes} min read`;
+}
+
+// Generate excerpt from content if not provided
+function generateExcerpt(content: string, maxLength: number = 160): string {
+  // Remove markdown formatting and get plain text
+  const plainText = content
+    .replace(/^#{1,6}\s+/gm, '') // Remove headers
+    .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
+    .replace(/\*(.*?)\*/g, '$1') // Remove italic
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links, keep text
+    .replace(/`(.*?)`/g, '$1') // Remove inline code
+    .replace(/\n+/g, ' ') // Replace newlines with spaces
+    .trim();
+  
+  // Extract first sentence or truncate to maxLength
+  const firstSentence = plainText.split('.')[0];
+  if (firstSentence.length <= maxLength) {
+    return firstSentence + '.';
+  }
+  
+  // Truncate to maxLength and add ellipsis
+  return plainText.substring(0, maxLength).trim() + '...';
 }
 
 // Get all post slugs
@@ -69,18 +91,27 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   
   const frontmatter = data as BlogPostFrontMatter;
   
-  return {
+  // Generate excerpt if not provided in frontmatter
+  const excerpt = frontmatter.excerpt || generateExcerpt(content);
+  
+  const post: BlogPost = {
     slug,
     title: frontmatter.title,
-    excerpt: frontmatter.excerpt,
+    excerpt,
     content: contentHtml,
     date: frontmatter.date,
     author: frontmatter.author,
     tags: frontmatter.tags || [],
     readingTime: calculateReadingTime(content),
-    image: frontmatter.image,
     featured: frontmatter.featured || false,
   };
+  
+  // Only add image field if it exists
+  if (frontmatter.image) {
+    post.image = frontmatter.image;
+  }
+  
+  return post;
 }
 
 // Get all posts sorted by date

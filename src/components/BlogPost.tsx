@@ -1,17 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  date: string;
-  author: string;
-  tags: string[];
-  readingTime: string;
-  image?: string;
-}
+import type { BlogPost } from '@/lib/blog';
 
 interface BlogPostProps {
   post: BlogPost;
