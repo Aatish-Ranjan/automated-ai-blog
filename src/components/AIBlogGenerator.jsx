@@ -5,16 +5,20 @@ const AIBlogGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [modelStatus, setModelStatus] = useState('checking');
   const [generatedPosts, setGeneratedPosts] = useState([]);
+  const [suggestedTopics, setSuggestedTopics] = useState([]);
+  const [isLoadingTopics, setIsLoadingTopics] = useState(false);
   const [formData, setFormData] = useState({
     topic: '',
     audience: 'general readers',
     tone: 'professional',
     length: 800,
+    useAutoTopic: false,
   });
 
   useEffect(() => {
     checkModelStatus();
     loadRecentPosts();
+    loadTopicSuggestions();
   }, []);
 
   const checkModelStatus = async () => {
@@ -37,9 +41,48 @@ const AIBlogGenerator = () => {
     }
   };
 
+  const loadTopicSuggestions = async () => {
+    setIsLoadingTopics(true);
+    try {
+      const response = await fetch('/api/topic-selection?type=suggestions&count=5');
+      const data = await response.json();
+      setSuggestedTopics(data.suggestions || []);
+    } catch (error) {
+      console.error('Failed to load topic suggestions:', error);
+    } finally {
+      setIsLoadingTopics(false);
+    }
+  };
+
+  const getSmartTopic = async () => {
+    try {
+      const response = await fetch('/api/topic-selection?type=smart');
+      const data = await response.json();
+      return data.topic;
+    } catch (error) {
+      console.error('Failed to get smart topic:', error);
+      return null;
+    }
+  };
+
+  const selectSuggestedTopic = (topic) => {
+    setFormData({ ...formData, topic: topic.title });
+  };
+
   const generateBlogPost = async () => {
-    if (!formData.topic.trim()) {
-      alert('Please enter a topic');
+    let topicToUse = formData.topic.trim();
+
+    // Auto-select topic if enabled and no manual topic provided
+    if (formData.useAutoTopic || !topicToUse) {
+      const smartTopic = await getSmartTopic();
+      if (smartTopic) {
+        topicToUse = smartTopic.title;
+        console.log('Auto-selected topic:', smartTopic.title);
+      }
+    }
+
+    if (!topicToUse) {
+      alert('Please enter a topic or enable auto-topic selection');
       return;
     }
 
@@ -51,7 +94,10 @@ const AIBlogGenerator = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          topic: topicToUse
+        }),
       });
 
       const result = await response.json();
@@ -60,8 +106,9 @@ const AIBlogGenerator = () => {
         throw new Error(result.error || 'Failed to generate blog post');
       }
 
-      // Refresh recent posts
+      // Refresh recent posts and topic suggestions
       await loadRecentPosts();
+      await loadTopicSuggestions();
       
       // Reset form
       setFormData({ ...formData, topic: '' });
@@ -118,17 +165,54 @@ const AIBlogGenerator = () => {
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Blog Topic *
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Blog Topic *
+                </label>
+                <label className="flex items-center text-sm">
+                  <input
+                    type="checkbox"
+                    checked={formData.useAutoTopic}
+                    onChange={(e) => setFormData({ ...formData, useAutoTopic: e.target.checked })}
+                    className="mr-2"
+                  />
+                  Auto-select topic
+                </label>
+              </div>
               <input
                 type="text"
                 value={formData.topic}
                 onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-                placeholder="Enter your blog topic..."
+                placeholder={formData.useAutoTopic ? "Topic will be auto-selected..." : "Enter your blog topic..."}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                disabled={isGenerating || modelStatus !== 'available'}
+                disabled={isGenerating || modelStatus !== 'available' || formData.useAutoTopic}
               />
+              
+              {/* Topic Suggestions */}
+              {!formData.useAutoTopic && suggestedTopics.length > 0 && (
+                <div className="mt-3">
+                  <p className="text-xs text-gray-600 mb-2">Suggested topics:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {suggestedTopics.slice(0, 3).map((topic, index) => (
+                      <button
+                        key={index}
+                        onClick={() => selectSuggestedTopic(topic)}
+                        className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded hover:bg-blue-100 transition-colors"
+                        disabled={isGenerating}
+                      >
+                        {topic.title}
+                      </button>
+                    ))}
+                    <button
+                      onClick={loadTopicSuggestions}
+                      className="px-2 py-1 bg-gray-50 text-gray-600 text-xs rounded hover:bg-gray-100 transition-colors"
+                      disabled={isLoadingTopics}
+                    >
+                      {isLoadingTopics ? '...' : '↻'}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -190,7 +274,7 @@ const AIBlogGenerator = () => {
 
             <button
               onClick={generateBlogPost}
-              disabled={isGenerating || !formData.topic.trim() || modelStatus !== 'available'}
+              disabled={isGenerating || (!formData.topic.trim() && !formData.useAutoTopic) || modelStatus !== 'available'}
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
               {isGenerating ? (

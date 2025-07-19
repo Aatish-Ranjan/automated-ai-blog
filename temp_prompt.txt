@@ -1,1 +1,0 @@
-﻿Write a blog post about Next.js performance optimization techniques for React developers. Include practical tips and code examples. Make it around 500 words.

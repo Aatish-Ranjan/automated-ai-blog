@@ -2,12 +2,23 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
+// Dynamic import for ES module
+let TopicSelectionService;
+
+async function initTopicService() {
+  if (!TopicSelectionService) {
+    const module = await import('../src/lib/TopicSelectionService.js');
+    TopicSelectionService = module.default;
+  }
+  return new TopicSelectionService();
+}
+
 // Ollama local model configuration
 const OLLAMA_BASE_URL = 'http://localhost:11434';
 
 // Try multiple models in order of preference (fallback system)
 const MODELS_TO_TRY = [
-  'ai-blog-writer',    // Your custom model (if created)
+  'ai-blog-writer-1b:latest',    // Your custom model
   'llama3.1:8b',      // Preferred model
   'llama3:8b',        // Alternative version
   'gemma:7b',         // Google's model  
@@ -15,40 +26,6 @@ const MODELS_TO_TRY = [
   'phi3:mini',        // Smaller Microsoft model
   'tinyllama',        // Lightweight fallback
   'codellama:7b'      // Code-focused model
-];
-
-const TOPICS = [
-  'artificial intelligence',
-  'machine learning',
-  'deep learning',
-  'prompt engineering',
-  'neural networks',
-  'AI ethics',
-  'AI in healthcare',
-  'AI in finance',
-  'computer vision',
-  'natural language processing',
-  'robotics',
-  'quantum computing',
-  'blockchain technology',
-  'tech startups',
-  'digital transformation',
-  'internet of things',
-  'augmented reality',
-  'virtual reality',
-  'edge computing',
-  'cybersecurity',
-];
-
-const CONTENT_TYPES = [
-  'tutorial',
-  'analysis',
-  'guide',
-  'trends',
-  'predictions',
-  'case study',
-  'comparison',
-  'review',
 ];
 
 function generateSlug(title) {
@@ -113,10 +90,22 @@ async function generateWithOllama(prompt, modelName) {
 
 async function generateBlogPost(modelName) {
   try {
-    const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-    const contentType = CONTENT_TYPES[Math.floor(Math.random() * CONTENT_TYPES.length)];
+    // Use TopicSelectionService to automatically select a topic
+    console.log('🎯 Selecting topic using intelligent topic selection...');
+    const topicService = await initTopicService();
+    const selectedTopic = topicService.getSmartTopic();
     
-    console.log(`Generating ${contentType} about ${topic} using local model...`);
+    if (!selectedTopic) {
+      throw new Error('Failed to select a topic automatically');
+    }
+    
+    console.log(`📝 Selected topic: "${selectedTopic.title}" from category: ${selectedTopic.category}`);
+    console.log(`📊 Topic metadata: Difficulty: ${selectedTopic.difficulty}, SEO: ${selectedTopic.seoValue}`);
+    
+    const topic = selectedTopic.title;
+    const contentType = selectedTopic.contentType || 'analysis'; // Use topic's suggested content type
+    
+    console.log(`🚀 Generating ${contentType} about "${topic}" using local model...`);
 
     const prompt = `You are an expert SEO content strategist and blog copywriter with 10+ years of experience.
 
@@ -157,16 +146,51 @@ Output ONLY a valid JSON object with this exact structure:
     let blogData;
     try {
       // Clean up response to extract JSON
-      const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        blogData = JSON.parse(jsonMatch[0]);
+      let jsonText = response;
+      
+      // Try to extract JSON from the response more robustly
+      const jsonStartIndex = jsonText.indexOf('{');
+      const jsonEndIndex = jsonText.lastIndexOf('}');
+      
+      if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
+        jsonText = jsonText.substring(jsonStartIndex, jsonEndIndex + 1);
+        
+        // Handle markdown code blocks in content field
+        jsonText = jsonText.replace(/```markdown\s*/g, '').replace(/```/g, '');
+        
+        // Fix array formatting in content
+        jsonText = jsonText.replace(/"content":\s*\[\s*"([^"]*)"/, '"content": "$1');
+        jsonText = jsonText.replace(/"\s*\]/, '"');
+        
+        blogData = JSON.parse(jsonText);
       } else {
-        throw new Error('No valid JSON found in response');
+        throw new Error('No valid JSON structure found in response');
       }
+      
+      // Ensure content is a string, not an array
+      if (Array.isArray(blogData.content)) {
+        blogData.content = blogData.content.join('\n\n');
+      }
+      
     } catch (parseError) {
       console.error('Error parsing AI response:', parseError);
       console.error('Raw response:', response);
-      throw new Error('Failed to parse AI response');
+      
+      // Fallback: create a simple blog post if parsing fails
+      const topic = selectedTopic.title;
+      console.log('Using fallback blog generation...');
+      
+      blogData = {
+        metaTitle: `${topic} - Complete Guide`,
+        metaDescription: `Learn everything about ${topic}. Complete guide with examples and best practices.`,
+        title: `Understanding ${topic}: A Comprehensive Guide`,
+        excerpt: `Explore the fundamentals of ${topic} in this comprehensive guide.`,
+        content: `# Understanding ${topic}: A Comprehensive Guide\n\n## Introduction\n\n${topic} is an important concept in today's technology landscape.\n\n## Key Concepts\n\nThis section covers the fundamental aspects of ${topic}.\n\n## Applications\n\nReal-world applications of ${topic} include various use cases.\n\n## Best Practices\n\nFollow these best practices when working with ${topic}.\n\n## Conclusion\n\nIn conclusion, ${topic} offers significant benefits for modern applications.`,
+        tags: [topic.toLowerCase().replace(/\s+/g, '-'), 'technology', 'guide'],
+        category: selectedTopic.category || 'Technology',
+        targetKeyword: topic,
+        readingTime: '5 min read'
+      };
     }
 
     // Generate metadata
@@ -211,6 +235,10 @@ readingTime: "${blogData.readingTime}"
     console.log(`Target Keyword: ${blogData.targetKeyword}`);
     console.log(`Tags: ${blogData.tags.join(', ')}`);
     
+    // Mark topic as used in the selection service
+    topicService.markTopicAsUsed(selectedTopic.id);
+    console.log(`✅ Topic marked as used to prevent immediate reuse`);
+    
     return {
       fileName,
       title: blogData.title,
@@ -221,6 +249,7 @@ readingTime: "${blogData.readingTime}"
       category: blogData.category,
       targetKeyword: blogData.targetKeyword,
       readingTime: blogData.readingTime,
+      selectedTopic: selectedTopic
     };
     
   } catch (error) {

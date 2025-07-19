@@ -1,0 +1,1432 @@
+{
+  "categories": {
+    "ai": {
+      "name": "Artificial Intelligence",
+      "weight": 0.12,
+      "topics": [
+        {
+          "id": "ai_001",
+          "title": "History of Artificial Intelligence",
+          "difficulty": "beginner",
+          "keywords": ["AI", "history", "evolution", "timeline"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 5
+        },
+        {
+          "id": "ai_002", 
+          "title": "Weak AI vs Strong AI",
+          "difficulty": "intermediate",
+          "keywords": ["AI types", "AGI", "narrow AI"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 6
+        },
+        {
+          "id": "ai_003",
+          "title": "Applications of AI in Healthcare",
+          "difficulty": "beginner",
+          "keywords": ["healthcare", "medical AI", "diagnosis"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "ai_004",
+          "title": "AI in Autonomous Vehicles",
+          "difficulty": "intermediate",
+          "keywords": ["self-driving", "automotive", "computer vision"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 6
+        },
+        {
+          "id": "ai_005",
+          "title": "Natural Language Processing Basics",
+          "difficulty": "beginner",
+          "keywords": ["NLP", "language", "text processing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "ai_006",
+          "title": "Computer Vision and Image Recognition",
+          "difficulty": "intermediate",
+          "keywords": ["computer vision", "image recognition", "CNN"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "ai_007",
+          "title": "AI Ethics and Bias",
+          "difficulty": "intermediate",
+          "keywords": ["ethics", "bias", "fairness", "AI governance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "ai_008",
+          "title": "Machine Learning vs Deep Learning",
+          "difficulty": "beginner",
+          "keywords": ["machine learning", "deep learning", "neural networks"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "ai_009",
+          "title": "AI in Robotics and Automation",
+          "difficulty": "intermediate",
+          "keywords": ["robotics", "automation", "AI integration"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "ai_010",
+          "title": "Explainable AI and Interpretability",
+          "difficulty": "advanced",
+          "keywords": ["XAI", "interpretability", "transparency"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "ai_011",
+          "title": "AI in Finance and Trading",
+          "difficulty": "intermediate",
+          "keywords": ["AI finance", "algorithmic trading", "fintech"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "ai_012",
+          "title": "Neural Architecture Search",
+          "difficulty": "advanced",
+          "keywords": ["NAS", "neural architecture", "AutoML"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        }
+      ]
+    },
+    "generative_ai": {
+      "name": "Generative AI",
+      "weight": 0.11,
+      "topics": [
+        {
+          "id": "genai_001",
+          "title": "Introduction to Large Language Models",
+          "difficulty": "beginner",
+          "keywords": ["LLM", "language models", "GPT", "transformer"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "genai_002",
+          "title": "Text-to-Image Generation",
+          "difficulty": "intermediate",
+          "keywords": ["Stable Diffusion", "DALL-E", "image generation"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "genai_003",
+          "title": "Fine-tuning vs In-Context Learning",
+          "difficulty": "advanced",
+          "keywords": ["fine-tuning", "few-shot", "training"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "genai_004",
+          "title": "Ethical Implications of Generative AI",
+          "difficulty": "intermediate",
+          "keywords": ["ethics", "bias", "fairness", "responsibility"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "genai_005",
+          "title": "Prompt Engineering Best Practices",
+          "difficulty": "beginner",
+          "keywords": ["prompting", "optimization", "techniques"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 6
+        },
+        {
+          "id": "genai_006",
+          "title": "GPT vs BERT: Understanding Transformer Architectures",
+          "difficulty": "advanced",
+          "keywords": ["GPT", "BERT", "transformer", "architecture"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "genai_007",
+          "title": "AI Music and Audio Generation",
+          "difficulty": "intermediate",
+          "keywords": ["AI music", "audio generation", "creativity"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "genai_008",
+          "title": "Video Generation with AI",
+          "difficulty": "advanced",
+          "keywords": ["video generation", "AI video", "multimedia"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "genai_009",
+          "title": "Multimodal AI Models",
+          "difficulty": "advanced",
+          "keywords": ["multimodal", "vision-language", "CLIP"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "genai_010",
+          "title": "AI Code Generation and Programming Assistants",
+          "difficulty": "intermediate",
+          "keywords": ["code generation", "Copilot", "programming AI"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "genai_011",
+          "title": "Generative Adversarial Networks (GANs)",
+          "difficulty": "advanced",
+          "keywords": ["GAN", "adversarial", "deep learning"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "genai_012",
+          "title": "Variational Autoencoders (VAEs)",
+          "difficulty": "advanced",
+          "keywords": ["VAE", "autoencoders", "latent space"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        }
+      ]
+    },
+    "prompt_engineering": {
+      "name": "Prompt Engineering",
+      "weight": 0.08,
+      "topics": [
+        {
+          "id": "pe_001",
+          "title": "Zero-shot vs Few-shot Prompting",
+          "difficulty": "intermediate",
+          "keywords": ["zero-shot", "few-shot", "prompting strategies"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "pe_002",
+          "title": "Chain-of-Thought Prompting",
+          "difficulty": "intermediate", 
+          "keywords": ["CoT", "reasoning", "step-by-step"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "pe_003",
+          "title": "Temperature and Top-p Settings",
+          "difficulty": "advanced",
+          "keywords": ["temperature", "top-p", "sampling", "creativity"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "pe_004",
+          "title": "Role-based Prompting Techniques",
+          "difficulty": "beginner",
+          "keywords": ["roles", "personas", "context"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 6
+        },
+        {
+          "id": "pe_005",
+          "title": "Prompt Injection and Security",
+          "difficulty": "advanced",
+          "keywords": ["security", "injection", "safety", "robustness"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "pe_006",
+          "title": "Advanced Prompt Chaining",
+          "difficulty": "advanced",
+          "keywords": ["prompt chaining", "complex workflows", "automation"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "pe_007",
+          "title": "System Messages and Context Setting",
+          "difficulty": "intermediate",
+          "keywords": ["system messages", "context", "instructions"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "pe_008",
+          "title": "Prompt Optimization Techniques",
+          "difficulty": "advanced",
+          "keywords": ["optimization", "A/B testing", "performance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        }
+      ]
+    },
+    "quantum_ai": {
+      "name": "Quantum Computing + AI",
+      "weight": 0.04,
+      "topics": [
+        {
+          "id": "qa_001",
+          "title": "Quantum Machine Learning Fundamentals",
+          "difficulty": "advanced",
+          "keywords": ["quantum ML", "QML", "quantum computing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "qa_002",
+          "title": "Quantum Neural Networks",
+          "difficulty": "advanced",
+          "keywords": ["QNN", "neural networks", "quantum"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "qa_003",
+          "title": "Quantum Advantage in AI",
+          "difficulty": "expert",
+          "keywords": ["quantum supremacy", "advantage", "speedup"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "qa_004",
+          "title": "Quantum Algorithms for Optimization",
+          "difficulty": "expert",
+          "keywords": ["quantum algorithms", "optimization", "QAOA"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "qa_005",
+          "title": "Variational Quantum Eigensolvers",
+          "difficulty": "expert",
+          "keywords": ["VQE", "variational", "quantum chemistry"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 16
+        }
+      ]
+    },
+    "ai_development": {
+      "name": "AI Development",
+      "weight": 0.07,
+      "topics": [
+        {
+          "id": "dev_001",
+          "title": "Setting up a Local AI Development Environment",
+          "difficulty": "intermediate",
+          "keywords": ["development", "setup", "environment", "tools"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "dev_002",
+          "title": "Working with Hugging Face Transformers",
+          "difficulty": "intermediate",
+          "keywords": ["Hugging Face", "transformers", "library"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "dev_003",
+          "title": "Deploying AI Models in Production",
+          "difficulty": "advanced",
+          "keywords": ["deployment", "production", "scaling", "MLOps"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "dev_004",
+          "title": "Model Optimization and Quantization",
+          "difficulty": "advanced",
+          "keywords": ["optimization", "quantization", "performance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "dev_005",
+          "title": "AI Model Testing and Validation",
+          "difficulty": "intermediate",
+          "keywords": ["testing", "validation", "metrics", "evaluation"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "dev_006",
+          "title": "Building Custom Neural Network Architectures",
+          "difficulty": "advanced",
+          "keywords": ["neural networks", "custom architecture", "design"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "dev_007",
+          "title": "AI Model Monitoring and Maintenance",
+          "difficulty": "intermediate",
+          "keywords": ["monitoring", "maintenance", "drift detection"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "dev_008",
+          "title": "Docker for AI Development",
+          "difficulty": "intermediate",
+          "keywords": ["Docker", "containerization", "AI deployment"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "dev_009",
+          "title": "Building AI APIs with FastAPI",
+          "difficulty": "intermediate",
+          "keywords": ["FastAPI", "API development", "Python", "web services"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "dev_010",
+          "title": "MLOps and Model Lifecycle Management",
+          "difficulty": "advanced",
+          "keywords": ["MLOps", "model lifecycle", "automation", "CI/CD"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        }
+      ]
+    },
+    "technology": {
+      "name": "Technology & Innovation",
+      "weight": 0.09,
+      "topics": [
+        {
+          "id": "tech_001",
+          "title": "5G Technology and Its Impact",
+          "difficulty": "beginner",
+          "keywords": ["5G", "telecommunications", "network technology"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "tech_002",
+          "title": "Edge Computing Fundamentals",
+          "difficulty": "intermediate",
+          "keywords": ["edge computing", "distributed systems", "IoT"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "tech_003",
+          "title": "Internet of Things (IoT) Architecture",
+          "difficulty": "intermediate",
+          "keywords": ["IoT", "sensors", "connectivity", "smart devices"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "tech_004",
+          "title": "Blockchain Beyond Cryptocurrency",
+          "difficulty": "intermediate",
+          "keywords": ["blockchain", "distributed ledger", "applications"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "tech_005",
+          "title": "Virtual and Augmented Reality",
+          "difficulty": "beginner",
+          "keywords": ["VR", "AR", "immersive technology", "metaverse"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "tech_006",
+          "title": "Cybersecurity in the Digital Age",
+          "difficulty": "intermediate",
+          "keywords": ["cybersecurity", "digital security", "threats"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "tech_007",
+          "title": "Cloud Computing Evolution",
+          "difficulty": "beginner",
+          "keywords": ["cloud computing", "AWS", "Azure", "serverless"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "tech_008",
+          "title": "Green Technology and Sustainability",
+          "difficulty": "beginner",
+          "keywords": ["green tech", "sustainability", "renewable energy"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "tech_009",
+          "title": "Quantum Computing for Beginners",
+          "difficulty": "intermediate",
+          "keywords": ["quantum computing", "qubits", "quantum mechanics"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "tech_010",
+          "title": "The Future of Space Technology",
+          "difficulty": "beginner",
+          "keywords": ["space technology", "satellites", "exploration"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "tech_011",
+          "title": "Microprocessors and Chip Technology",
+          "difficulty": "intermediate",
+          "keywords": ["microprocessors", "chips", "semiconductors"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "tech_012",
+          "title": "Wireless Technology Evolution",
+          "difficulty": "beginner",
+          "keywords": ["wireless", "WiFi", "communication", "protocols"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        }
+      ]
+    },
+    "programming": {
+      "name": "Programming & Software Development",
+      "weight": 0.10,
+      "topics": [
+        {
+          "id": "prog_001",
+          "title": "Python for Data Science",
+          "difficulty": "intermediate",
+          "keywords": ["Python", "data science", "pandas", "numpy"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "prog_002",
+          "title": "JavaScript Frameworks Comparison",
+          "difficulty": "intermediate",
+          "keywords": ["JavaScript", "React", "Vue", "Angular"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "prog_003",
+          "title": "Microservices Architecture",
+          "difficulty": "advanced",
+          "keywords": ["microservices", "architecture", "distributed systems"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "prog_004",
+          "title": "DevOps Best Practices",
+          "difficulty": "intermediate",
+          "keywords": ["DevOps", "CI/CD", "automation", "deployment"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "prog_005",
+          "title": "API Design and Development",
+          "difficulty": "intermediate",
+          "keywords": ["API", "REST", "GraphQL", "web services"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "prog_006",
+          "title": "Database Design Principles",
+          "difficulty": "intermediate",
+          "keywords": ["database", "SQL", "NoSQL", "design patterns"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "prog_007",
+          "title": "Mobile App Development Trends",
+          "difficulty": "beginner",
+          "keywords": ["mobile development", "iOS", "Android", "cross-platform"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "prog_008",
+          "title": "Web Performance Optimization",
+          "difficulty": "advanced",
+          "keywords": ["performance", "optimization", "web development"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "prog_009",
+          "title": "Functional Programming Concepts",
+          "difficulty": "advanced",
+          "keywords": ["functional programming", "immutability", "pure functions"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "prog_010",
+          "title": "Software Testing Strategies",
+          "difficulty": "intermediate",
+          "keywords": ["testing", "unit tests", "integration", "TDD"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "prog_011",
+          "title": "Git and Version Control Best Practices",
+          "difficulty": "beginner",
+          "keywords": ["Git", "version control", "collaboration", "workflow"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "prog_012",
+          "title": "Code Review and Quality Assurance",
+          "difficulty": "intermediate",
+          "keywords": ["code review", "quality", "best practices", "standards"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "prog_013",
+          "title": "Rust Programming for Systems Development",
+          "difficulty": "advanced",
+          "keywords": ["Rust", "systems programming", "memory safety"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "prog_014",
+          "title": "Go Language for Backend Development",
+          "difficulty": "intermediate",
+          "keywords": ["Go", "Golang", "backend", "concurrency"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "prog_015",
+          "title": "WebAssembly (WASM) Fundamentals",
+          "difficulty": "advanced",
+          "keywords": ["WebAssembly", "WASM", "performance", "web"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        }
+      ]
+    },
+    "data_science": {
+      "name": "Data Science & Analytics",
+      "weight": 0.08,
+      "topics": [
+        {
+          "id": "ds_001",
+          "title": "Data Visualization Best Practices",
+          "difficulty": "beginner",
+          "keywords": ["data visualization", "charts", "graphs", "storytelling"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "ds_002",
+          "title": "Statistical Analysis for Beginners",
+          "difficulty": "beginner",
+          "keywords": ["statistics", "analysis", "hypothesis testing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "ds_003",
+          "title": "Big Data Processing with Apache Spark",
+          "difficulty": "advanced",
+          "keywords": ["big data", "Apache Spark", "distributed computing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "ds_004",
+          "title": "Time Series Analysis and Forecasting",
+          "difficulty": "intermediate",
+          "keywords": ["time series", "forecasting", "prediction"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "ds_005",
+          "title": "A/B Testing and Experimentation",
+          "difficulty": "intermediate",
+          "keywords": ["A/B testing", "experimentation", "statistical significance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "ds_006",
+          "title": "Data Cleaning and Preprocessing",
+          "difficulty": "beginner",
+          "keywords": ["data cleaning", "preprocessing", "data quality"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "ds_007",
+          "title": "Feature Engineering Techniques",
+          "difficulty": "intermediate",
+          "keywords": ["feature engineering", "feature selection", "model improvement"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "ds_008",
+          "title": "Business Intelligence and Analytics",
+          "difficulty": "beginner",
+          "keywords": ["business intelligence", "BI", "analytics", "KPIs"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "ds_009",
+          "title": "Data Privacy and GDPR Compliance",
+          "difficulty": "intermediate",
+          "keywords": ["data privacy", "GDPR", "compliance", "security"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "ds_010",
+          "title": "Real-time Data Streaming",
+          "difficulty": "advanced",
+          "keywords": ["real-time", "streaming", "Apache Kafka", "data pipelines"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "ds_011",
+          "title": "Data Warehousing and ETL Processes",
+          "difficulty": "intermediate",
+          "keywords": ["data warehouse", "ETL", "data pipelines", "integration"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "ds_012",
+          "title": "Machine Learning Model Evaluation",
+          "difficulty": "intermediate",
+          "keywords": ["model evaluation", "metrics", "cross-validation", "performance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        }
+      ]
+    },
+    "business": {
+      "name": "Business & Entrepreneurship",
+      "weight": 0.06,
+      "topics": [
+        {
+          "id": "biz_001",
+          "title": "Digital Transformation Strategies",
+          "difficulty": "intermediate",
+          "keywords": ["digital transformation", "strategy", "innovation"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "biz_002",
+          "title": "Startup Funding and Investment",
+          "difficulty": "intermediate",
+          "keywords": ["startup", "funding", "venture capital", "investment"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "biz_003",
+          "title": "Remote Work Management",
+          "difficulty": "beginner",
+          "keywords": ["remote work", "management", "productivity", "teams"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "biz_004",
+          "title": "Customer Experience Optimization",
+          "difficulty": "intermediate",
+          "keywords": ["customer experience", "CX", "optimization", "satisfaction"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "biz_005",
+          "title": "Agile Project Management",
+          "difficulty": "intermediate",
+          "keywords": ["agile", "project management", "scrum", "methodology"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "biz_006",
+          "title": "E-commerce Trends and Strategies",
+          "difficulty": "beginner",
+          "keywords": ["e-commerce", "online business", "digital marketing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "biz_007",
+          "title": "Data-Driven Decision Making",
+          "difficulty": "intermediate",
+          "keywords": ["data-driven", "decision making", "analytics", "insights"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "biz_008",
+          "title": "Sustainable Business Practices",
+          "difficulty": "beginner",
+          "keywords": ["sustainability", "ESG", "green business", "environment"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "biz_009",
+          "title": "Product Management Fundamentals",
+          "difficulty": "intermediate",
+          "keywords": ["product management", "strategy", "roadmap", "development"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "biz_010",
+          "title": "Leadership in Tech Companies",
+          "difficulty": "intermediate",
+          "keywords": ["leadership", "tech leadership", "management", "teams"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        }
+      ]
+    },
+    "health_wellness": {
+      "name": "Health & Wellness",
+      "weight": 0.05,
+      "topics": [
+        {
+          "id": "health_001",
+          "title": "Digital Health and Telemedicine",
+          "difficulty": "beginner",
+          "keywords": ["digital health", "telemedicine", "healthcare technology"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "health_002",
+          "title": "Mental Health in the Digital Age",
+          "difficulty": "beginner",
+          "keywords": ["mental health", "digital wellness", "screen time"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "health_003",
+          "title": "Wearable Technology and Fitness Tracking",
+          "difficulty": "beginner",
+          "keywords": ["wearables", "fitness tracking", "health monitoring"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "health_004",
+          "title": "Nutrition and Technology",
+          "difficulty": "beginner",
+          "keywords": ["nutrition", "food tech", "health apps"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "health_005",
+          "title": "Ergonomics for Tech Workers",
+          "difficulty": "beginner",
+          "keywords": ["ergonomics", "workplace health", "tech workers"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 7
+        },
+        {
+          "id": "health_006",
+          "title": "Sleep and Technology",
+          "difficulty": "beginner",
+          "keywords": ["sleep", "technology", "blue light", "digital wellness"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "health_007",
+          "title": "Biometric Authentication and Privacy",
+          "difficulty": "intermediate",
+          "keywords": ["biometrics", "authentication", "privacy", "security"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "health_008",
+          "title": "AI in Medical Diagnosis",
+          "difficulty": "intermediate",
+          "keywords": ["AI healthcare", "medical diagnosis", "machine learning"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        }
+      ]
+    },
+    "science": {
+      "name": "Science & Research",
+      "weight": 0.04,
+      "topics": [
+        {
+          "id": "sci_001",
+          "title": "Climate Change and Technology Solutions",
+          "difficulty": "intermediate",
+          "keywords": ["climate change", "technology", "sustainability", "solutions"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "sci_002",
+          "title": "Biotechnology and Gene Editing",
+          "difficulty": "advanced",
+          "keywords": ["biotechnology", "CRISPR", "gene editing", "genetics"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "sci_003",
+          "title": "Space Exploration Technologies",
+          "difficulty": "intermediate",
+          "keywords": ["space exploration", "space technology", "Mars", "satellites"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "sci_004",
+          "title": "Renewable Energy Technologies",
+          "difficulty": "intermediate",
+          "keywords": ["renewable energy", "solar", "wind", "clean energy"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "sci_005",
+          "title": "Materials Science Innovations",
+          "difficulty": "advanced",
+          "keywords": ["materials science", "nanotechnology", "innovation"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "sci_006",
+          "title": "Ocean Technology and Marine Science",
+          "difficulty": "intermediate",
+          "keywords": ["ocean technology", "marine science", "underwater exploration"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "sci_007",
+          "title": "Nuclear Energy and Technology",
+          "difficulty": "advanced",
+          "keywords": ["nuclear energy", "nuclear technology", "fusion", "fission"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "sci_008",
+          "title": "Computational Biology and Bioinformatics",
+          "difficulty": "advanced",
+          "keywords": ["computational biology", "bioinformatics", "genomics"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        }
+      ]
+    },
+    "future_trends": {
+      "name": "Future Trends & Predictions",
+      "weight": 0.06,
+      "topics": [
+        {
+          "id": "future_001",
+          "title": "The Future of Work and Automation",
+          "difficulty": "intermediate",
+          "keywords": ["future of work", "automation", "employment", "AI impact"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "future_002",
+          "title": "Smart Cities and Urban Technology",
+          "difficulty": "intermediate",
+          "keywords": ["smart cities", "urban technology", "IoT", "infrastructure"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "future_003",
+          "title": "Transportation Revolution",
+          "difficulty": "beginner",
+          "keywords": ["transportation", "electric vehicles", "autonomous", "mobility"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "future_004",
+          "title": "Education Technology Trends",
+          "difficulty": "beginner",
+          "keywords": ["education technology", "EdTech", "online learning", "AI tutoring"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "future_005",
+          "title": "Healthcare Technology Revolution",
+          "difficulty": "intermediate",
+          "keywords": ["healthcare tech", "personalized medicine", "AI diagnosis"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "future_006",
+          "title": "Digital Currency and Financial Technology",
+          "difficulty": "intermediate",
+          "keywords": ["fintech", "digital currency", "blockchain", "payments"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "future_007",
+          "title": "Virtual Worlds and the Metaverse",
+          "difficulty": "beginner",
+          "keywords": ["metaverse", "virtual worlds", "VR", "digital spaces"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "future_008",
+          "title": "Brain-Computer Interfaces",
+          "difficulty": "advanced",
+          "keywords": ["BCI", "brain-computer interface", "neurotechnology"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "future_009",
+          "title": "Artificial General Intelligence (AGI)",
+          "difficulty": "advanced",
+          "keywords": ["AGI", "artificial general intelligence", "singularity"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        }
+      ]
+    },
+    "tutorial_guides": {
+      "name": "Tutorials & How-To Guides",
+      "weight": 0.08,
+      "topics": [
+        {
+          "id": "tut_001",
+          "title": "Building Your First Machine Learning Model",
+          "difficulty": "beginner",
+          "keywords": ["machine learning", "tutorial", "beginner", "model building"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "tut_002",
+          "title": "Setting up a Home Lab for Tech Experiments",
+          "difficulty": "intermediate",
+          "keywords": ["home lab", "setup", "experiments", "hardware"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "tut_003",
+          "title": "Creating Your First Web Application",
+          "difficulty": "beginner",
+          "keywords": ["web application", "tutorial", "development", "beginner"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "tut_004",
+          "title": "Data Analysis with Python Pandas",
+          "difficulty": "intermediate",
+          "keywords": ["data analysis", "Python", "pandas", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "tut_005",
+          "title": "Setting up a CI/CD Pipeline",
+          "difficulty": "advanced",
+          "keywords": ["CI/CD", "DevOps", "automation", "pipeline"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 16
+        },
+        {
+          "id": "tut_006",
+          "title": "Introduction to Docker for Developers",
+          "difficulty": "intermediate",
+          "keywords": ["Docker", "containers", "development", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "tut_007",
+          "title": "Building a RESTful API from Scratch",
+          "difficulty": "intermediate",
+          "keywords": ["REST API", "backend", "development", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "tut_008",
+          "title": "Database Design for Beginners",
+          "difficulty": "beginner",
+          "keywords": ["database", "design", "SQL", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "tut_009",
+          "title": "Creating Interactive Data Visualizations",
+          "difficulty": "intermediate",
+          "keywords": ["data visualization", "interactive", "charts", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "tut_010",
+          "title": "Mobile App Development with React Native",
+          "difficulty": "intermediate",
+          "keywords": ["React Native", "mobile development", "cross-platform"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 15
+        },
+        {
+          "id": "tut_011",
+          "title": "Setting up Kubernetes for Development",
+          "difficulty": "advanced",
+          "keywords": ["Kubernetes", "container orchestration", "deployment"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 18
+        },
+        {
+          "id": "tut_012",
+          "title": "Building a Chatbot with Natural Language Processing",
+          "difficulty": "intermediate",
+          "keywords": ["chatbot", "NLP", "AI", "tutorial"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 16
+        }
+      ]
+    },
+    "security": {
+      "name": "Cybersecurity & Privacy",
+      "weight": 0.05,
+      "topics": [
+        {
+          "id": "sec_001",
+          "title": "Zero Trust Security Architecture",
+          "difficulty": "advanced",
+          "keywords": ["zero trust", "security", "architecture", "network"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "sec_002",
+          "title": "Password Security and Authentication",
+          "difficulty": "beginner",
+          "keywords": ["password security", "authentication", "2FA", "MFA"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 8
+        },
+        {
+          "id": "sec_003",
+          "title": "Cloud Security Best Practices",
+          "difficulty": "intermediate",
+          "keywords": ["cloud security", "AWS security", "Azure security"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "sec_004",
+          "title": "Encryption and Cryptography",
+          "difficulty": "advanced",
+          "keywords": ["encryption", "cryptography", "security", "algorithms"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "sec_005",
+          "title": "Social Engineering and Phishing Prevention",
+          "difficulty": "beginner",
+          "keywords": ["social engineering", "phishing", "awareness", "prevention"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "sec_006",
+          "title": "Penetration Testing Fundamentals",
+          "difficulty": "advanced",
+          "keywords": ["penetration testing", "ethical hacking", "security testing"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 14
+        },
+        {
+          "id": "sec_007",
+          "title": "Web Application Security",
+          "difficulty": "intermediate",
+          "keywords": ["web security", "OWASP", "application security"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "sec_008",
+          "title": "Privacy Laws and Data Protection",
+          "difficulty": "intermediate",
+          "keywords": ["privacy", "GDPR", "data protection", "compliance"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        }
+      ]
+    },
+    "mobile_iot": {
+      "name": "Mobile & IoT Development",
+      "weight": 0.05,
+      "topics": [
+        {
+          "id": "mobile_001",
+          "title": "Progressive Web Apps (PWA)",
+          "difficulty": "intermediate",
+          "keywords": ["PWA", "progressive web apps", "mobile web"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "mobile_002",
+          "title": "Flutter vs React Native Comparison",
+          "difficulty": "intermediate",
+          "keywords": ["Flutter", "React Native", "cross-platform", "mobile"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 11
+        },
+        {
+          "id": "mobile_003",
+          "title": "IoT Device Programming",
+          "difficulty": "advanced",
+          "keywords": ["IoT", "device programming", "embedded systems"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 13
+        },
+        {
+          "id": "mobile_004",
+          "title": "Mobile App Performance Optimization",
+          "difficulty": "advanced",
+          "keywords": ["mobile performance", "optimization", "battery life"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 12
+        },
+        {
+          "id": "mobile_005",
+          "title": "Smart Home Technology and Automation",
+          "difficulty": "beginner",
+          "keywords": ["smart home", "automation", "IoT", "connected devices"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        },
+        {
+          "id": "mobile_006",
+          "title": "Wearable App Development",
+          "difficulty": "intermediate",
+          "keywords": ["wearable", "smartwatch", "fitness apps"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 10
+        },
+        {
+          "id": "mobile_007",
+          "title": "Location-Based Services and GPS",
+          "difficulty": "intermediate",
+          "keywords": ["location services", "GPS", "geolocation", "mapping"],
+          "lastUsed": null,
+          "useCount": 0,
+          "estimatedReadTime": 9
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "totalTopics": 190,
+    "lastUpdated": "2025-01-19T22:30:00Z",
+    "version": "3.0",
+    "selectionStrategy": "weighted_rotation_with_freshness"
+  }
+}

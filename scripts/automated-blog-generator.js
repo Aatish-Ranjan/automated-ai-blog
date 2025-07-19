@@ -13,16 +13,29 @@ async function runCommand(command, args, options = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { 
       cwd: BLOG_DIR,
-      stdio: 'inherit',
+      stdio: options.stdio || 'inherit',
       shell: true,
       ...options 
     });
     
+    let stdout = '';
+    let stderr = '';
+    
+    if (options.stdio === 'pipe') {
+      child.stdout.on('data', (data) => {
+        stdout += data.toString();
+      });
+      
+      child.stderr.on('data', (data) => {
+        stderr += data.toString();
+      });
+    }
+    
     child.on('close', (code) => {
       if (code === 0) {
-        resolve();
+        resolve({ stdout, stderr });
       } else {
-        reject(new Error(`Command failed with code ${code}`));
+        reject(new Error(`Command failed with code ${code}: ${stderr}`));
       }
     });
   });
@@ -32,15 +45,15 @@ async function generateAndPushBlogPost() {
   try {
     console.log('🚀 Starting automated blog post generation...');
     
-    // Step 1: Generate blog post using local model
-    console.log('📝 Generating blog post with local model...');
+    // Step 1: Generate blog post using local model with automatic topic selection
+    console.log('📝 Generating blog post with automatic topic selection...');
     await runCommand('node', ['scripts/generate-post-local.js']);
     
     // Step 2: Check if new content was generated
     console.log('🔍 Checking for new content...');
-    const { stdout } = await runCommand('git', ['status', '--porcelain'], { stdio: 'pipe' });
+    const result = await runCommand('git', ['status', '--porcelain'], { stdio: 'pipe' });
     
-    if (!stdout || stdout.trim() === '') {
+    if (!result.stdout || result.stdout.trim() === '') {
       console.log('ℹ️  No new content generated, skipping push.');
       return;
     }
@@ -51,7 +64,7 @@ async function generateAndPushBlogPost() {
     
     // Step 4: Commit changes
     console.log('💾 Committing changes...');
-    await runCommand('git', ['commit', '-m', COMMIT_MESSAGE]);
+    await runCommand('git', ['commit', '-m', `"${COMMIT_MESSAGE}"`]);
     
     // Step 5: Push to GitHub
     console.log('🚀 Pushing to GitHub...');
