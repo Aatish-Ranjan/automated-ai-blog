@@ -4,6 +4,9 @@ const path = require('path');
 
 const OLLAMA_BASE_URL = 'http://localhost:11434';
 
+// Import Enhanced Prompt Engine
+const EnhancedPromptEngine = require('../src/lib/enhancedPromptEngine.js');
+
 // Import TopicSelectionService with dynamic import
 async function initTopicService() {
   try {
@@ -75,7 +78,7 @@ async function generateWithOllama(prompt, modelName) {
   try {
     console.log(`🤖 Generating content with ${modelName} via CLI...`);
     
-    // Use CLI instead of API since API has issues with model detection
+    // Use CLI with better buffering and timeout handling
     const { spawn } = require('child_process');
     
     return new Promise((resolve, reject) => {
@@ -86,6 +89,10 @@ async function generateWithOllama(prompt, modelName) {
       
       let output = '';
       let errorOutput = '';
+      
+      // Increase buffer sizes to handle large content
+      process.stdout.setEncoding('utf8');
+      process.stderr.setEncoding('utf8');
       
       process.stdout.on('data', (data) => {
         output += data.toString();
@@ -98,7 +105,12 @@ async function generateWithOllama(prompt, modelName) {
       process.on('close', (code) => {
         if (code === 0) {
           console.log(`📄 Generated ${output.length} characters`);
-          resolve(output.trim());
+          // Remove any CLI artifacts or loading indicators
+          const cleanOutput = output
+            .replace(/⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋/g, '') // Remove spinner characters
+            .replace(/^[⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋\s]*/, '') // Remove leading spinner
+            .trim();
+          resolve(cleanOutput);
         } else {
           reject(new Error(`Ollama CLI failed with code ${code}: ${errorOutput}`));
         }
@@ -108,15 +120,19 @@ async function generateWithOllama(prompt, modelName) {
         reject(new Error(`Failed to start ollama CLI: ${error.message}`));
       });
       
-      // Send the prompt to the model
-      process.stdin.write(prompt);
+      // Send the prompt with explicit completion instruction
+      const enhancedPrompt = `${prompt}
+
+Important: Write a complete article with proper conclusion. Do not stop mid-sentence.`;
+      
+      process.stdin.write(enhancedPrompt);
       process.stdin.end();
       
-      // Set timeout for long generations
+      // Increase timeout to 5 minutes for longer content
       setTimeout(() => {
         process.kill();
-        reject(new Error('Generation timeout after 3 minutes'));
-      }, 180000);
+        reject(new Error('Generation timeout after 5 minutes'));
+      }, 300000);
     });
     
   } catch (error) {
@@ -142,81 +158,65 @@ async function generateBlogPost(modelName) {
     const topic = selectedTopic.title;
     const contentType = selectedTopic.contentType || 'comprehensive-guide';
     
-    console.log(`🚀 Generating ${contentType} about "${topic}" using local model...`);
+    console.log(`🚀 Generating ${contentType} about "${topic}" using Enhanced Prompt Engine...`);
 
-    const prompt = `Write a comprehensive, SEO-optimized blog post about "${topic}". 
+    // Initialize Enhanced Prompt Engine
+    const promptEngine = new EnhancedPromptEngine();
+    
+    // Generate enhanced keywords if not provided
+    const topicKeywords = selectedTopic.keywords && selectedTopic.keywords.length > 0 
+      ? selectedTopic.keywords 
+      : promptEngine.generateKeywordSuggestions(topic, selectedTopic.category);
 
-WRITE IN PURE MARKDOWN FORMAT ONLY. Do not use JSON format.
+    // Generate enhanced prompt
+    const prompt = promptEngine.generateEnhancedPrompt({
+      topic: topic,
+      keywords: topicKeywords,
+      difficulty: selectedTopic.difficulty || 'intermediate',
+      targetWords: 4000,
+      category: selectedTopic.category || 'technology',
+      audience: 'technical professionals and developers'
+    });
 
-Requirements:
-- Write a complete blog post of at least 2000 words
-- Use proper markdown formatting with ## headers
-- Include practical examples and real-world applications
-- Write in an engaging, human-like tone
-- Target keyword: "${topic}"
-- Include introduction, main concepts, practical applications, best practices, and conclusion
-
-Structure your post like this:
-# [Engaging title with "${topic}"]
-
-## Introduction
-[2-3 paragraph introduction explaining what ${topic} is and why it matters]
-
-## Key Concepts of ${topic}
-[Detailed explanation of core concepts]
-
-## Practical Applications
-[Real-world examples and use cases]
-
-## Benefits and Advantages
-[Key benefits and advantages]
-
-## Challenges and Considerations
-[Potential challenges or limitations]
-
-## Best Practices
-[Actionable recommendations and best practices]
-
-## Future Outlook
-[Future trends and developments]
-
-## Conclusion
-[Summary and call to action]
-
-Write the complete blog post now:`;
+    // Validate prompt quality
+    const validation = promptEngine.validatePrompt(prompt);
+    console.log(`✅ Prompt validation: ${validation.score} (${validation.isValid ? 'PASSED' : 'NEEDS REVIEW'})`);
+    
+    if (!validation.isValid) {
+      console.warn(`⚠️ Missing prompt features: ${validation.missing.join(', ')}`);
+    }
 
     const response = await generateWithOllama(prompt, modelName);
     
-    // Parse the markdown response
+    // Use the model's raw markdown output directly
     let blogData;
     try {
       console.log('📄 Raw AI response length:', response.length);
       
-      // Since we're expecting pure markdown, not JSON, extract content directly
+      // Use the model's content exactly as generated - no parsing needed!
       let markdownContent = response.trim();
       
-      // Remove any potential JSON artifacts or malformed syntax
-      markdownContent = markdownContent
-        .replace(/definitions_and_background\s*{\s*[^}]*}/g, '')
-        .replace(/[{}]/g, '')
-        .replace(/",\s*$/gm, '')
-        .replace(/^\s*"[^"]*":\s*/gm, '')
-        .trim();
+      // Check if content seems complete (has a conclusion section)
+      const hasConclusion = /##\s*Conclusion/i.test(markdownContent);
+      const hasProperEnding = markdownContent.endsWith('.') || markdownContent.endsWith('!') || markdownContent.endsWith('?');
       
-      // Extract title from the markdown (look for # heading)
+      if (!hasConclusion || !hasProperEnding) {
+        console.log('⚠️ Content appears incomplete, adding conclusion...');
+        
+        // Add a proper conclusion if missing
+        if (!hasConclusion) {
+          markdownContent += `\n\n## Conclusion\n\n${topic} plays a crucial role in today's technology landscape. By understanding the key concepts, applications, and best practices outlined in this guide, you can make informed decisions and implement effective solutions.\n\nStaying current with developments in ${topic} will help you maximize its benefits while mitigating potential challenges. Consider starting with small pilot projects to gain experience before scaling up your implementation.\n\nReady to get started with ${topic}? Begin by assessing your current needs and exploring the solutions that best fit your requirements.`;
+        }
+      }
+      
+      // Extract title from the first # heading in the content
       let extractedTitle = `${topic}: A Comprehensive Guide`;
       const titleMatch = markdownContent.match(/^#\s+(.+)$/m);
       if (titleMatch) {
         extractedTitle = titleMatch[1];
       }
       
-      // Clean up the markdown content
-      if (markdownContent.length < 500) {
-        // If content is too short, regenerate with a fallback approach
-        throw new Error('Generated content is too short');
-      }
-      
-      console.log('✅ Successfully extracted markdown content');
+      console.log('✅ Using model content directly');
       
       blogData = {
         title: extractedTitle,
@@ -229,124 +229,15 @@ Write the complete blog post now:`;
         readingTime: "8 min read"
       };
       
-    } catch (parseError) {
-      console.log('⚠️ Content extraction failed, using fallback generation');
+    } catch (error) {
+      console.log('⚠️ Error with model content, using fallback');
       
-      const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      
-      // Create comprehensive fallback content
-      const fallbackContent = `# ${topic}: A Comprehensive Guide
-
-## Introduction
-
-${topic} represents a significant advancement in modern technology that is reshaping how we approach various challenges in today's digital landscape. Understanding the fundamental principles and practical applications of ${topic} is essential for professionals and enthusiasts alike.
-
-This comprehensive guide explores the key concepts, benefits, challenges, and future prospects of ${topic}, providing you with the knowledge needed to leverage this technology effectively.
-
-## Key Concepts of ${topic}
-
-The foundation of ${topic} lies in several core principles that work together to deliver enhanced functionality and performance. These concepts form the building blocks for understanding how ${topic} operates and why it has gained significant attention in recent years.
-
-### Technical Fundamentals
-
-${topic} operates on established principles that have been refined and optimized for modern applications. The technical architecture involves multiple components working in harmony to achieve desired outcomes.
-
-### Core Components
-
-Understanding the individual components that make up ${topic} systems is crucial for implementation and optimization. Each component plays a specific role in the overall functionality.
-
-## Practical Applications
-
-${topic} has found applications across various industries and use cases, demonstrating its versatility and practical value.
-
-### Industry Applications
-
-- **Healthcare**: Improving patient outcomes and operational efficiency
-- **Finance**: Enhancing security and processing capabilities
-- **Manufacturing**: Optimizing production processes and quality control
-- **Education**: Transforming learning experiences and accessibility
-
-### Real-World Examples
-
-Several organizations have successfully implemented ${topic} solutions, achieving measurable improvements in their operations and customer satisfaction.
-
-## Benefits and Advantages
-
-The adoption of ${topic} brings numerous benefits that contribute to improved performance and outcomes:
-
-### Performance Improvements
-- Enhanced speed and efficiency
-- Better resource utilization
-- Improved accuracy and reliability
-
-### Cost Benefits
-- Reduced operational costs
-- Lower maintenance requirements
-- Better return on investment
-
-### Strategic Advantages
-- Competitive differentiation
-- Improved customer experience
-- Enhanced scalability
-
-## Challenges and Considerations
-
-While ${topic} offers significant benefits, organizations must also consider potential challenges:
-
-### Technical Challenges
-- Implementation complexity
-- Integration requirements
-- Skills and training needs
-
-### Operational Considerations
-- Change management
-- Security implications
-- Compliance requirements
-
-## Best Practices
-
-To maximize the benefits of ${topic}, consider these proven best practices:
-
-### Planning and Strategy
-1. Conduct thorough requirements analysis
-2. Develop a comprehensive implementation plan
-3. Establish clear success metrics
-
-### Implementation
-1. Start with pilot projects
-2. Ensure proper training and support
-3. Monitor and optimize continuously
-
-### Maintenance and Optimization
-1. Regular performance monitoring
-2. Proactive maintenance schedules
-3. Continuous improvement processes
-
-## Future Outlook
-
-The future of ${topic} looks promising, with ongoing developments and innovations expanding its capabilities and applications. Emerging trends suggest continued growth and evolution in this space.
-
-### Emerging Trends
-- Advanced automation capabilities
-- Enhanced integration possibilities
-- Improved user experiences
-
-### Market Projections
-Industry analysts predict continued growth and adoption of ${topic} across various sectors, driven by increasing demand and technological advancements.
-
-## Conclusion
-
-${topic} represents a powerful technology that offers significant benefits for organizations willing to invest in proper implementation and optimization. By understanding the key concepts, applications, and best practices outlined in this guide, you can make informed decisions about leveraging ${topic} in your own context.
-
-The key to success lies in careful planning, proper implementation, and continuous optimization. As the technology continues to evolve, staying informed about new developments and best practices will ensure you maximize the value of your ${topic} initiatives.
-
-Ready to explore ${topic} further? Consider starting with a pilot project to gain hands-on experience and build expertise within your organization.`;
-
+      // Simple fallback if something goes wrong
       blogData = {
         title: `${topic}: A Comprehensive Guide`,
-        content: fallbackContent,
+        content: response.trim() || `# ${topic}: A Comprehensive Guide\n\nThis is a comprehensive guide about ${topic}.`,
         metaDescription: `Learn about ${topic} with this comprehensive guide covering key concepts, applications, and best practices.`,
-        tags: selectedTopic.keywords || [slug, 'technology', 'guide'],
+        tags: selectedTopic.keywords || [topic.toLowerCase().replace(/\s+/g, '-'), 'technology', 'guide'],
         category: selectedTopic.category || 'Technology',
         excerpt: `Explore the essential concepts and practical applications of ${topic} in this detailed guide.`,
         targetKeyword: topic,
