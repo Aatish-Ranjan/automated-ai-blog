@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'smartiyo2025';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'smartiyo123';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

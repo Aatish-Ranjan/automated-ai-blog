@@ -12,7 +12,9 @@
     "generate-rss": "node scripts/generate-rss.js",
     "deploy": "npm run build && gh-pages -d out",
     "build-all": "npm run generate-rss && npm run build",
-    "auto-post": "powershell -ExecutionPolicy Bypass -File ./generate-and-deploy.ps1"
+    "auto-post": "powershell -ExecutionPolicy Bypass -File ./generate-and-deploy.ps1",
+    "admin": "start http://localhost:3001/admin && npm run dev",
+    "admin-bg": "powershell -ExecutionPolicy Bypass -File ./launch-admin.ps1"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",

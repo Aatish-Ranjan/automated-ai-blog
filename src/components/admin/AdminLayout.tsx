@@ -51,7 +51,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title = 'Admin Pane
     { name: 'Dashboard', href: '/admin', icon: '📊' },
     { name: 'Content', href: '/admin/content', icon: '📝' },
     { name: 'AI Generator', href: '/admin/generator', icon: '🤖' },
-    { name: 'Media', href: '/admin/media', icon: '🖼️' },
+    { name: 'Media', href: '/admin/media', icon: '�' },
     { name: 'Settings', href: '/admin/settings', icon: '⚙️' },
     { name: 'Deployment', href: '/admin/deployment', icon: '🚀' },
   ];
