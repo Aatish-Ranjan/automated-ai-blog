@@ -3,9 +3,6 @@ name: Deploy AI Blog
 on:
   push:
     branches: [ main ]
-  schedule:
-    # Run daily at 9 AM UTC to generate new content
-    - cron: '1 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -31,21 +28,6 @@ jobs:
         
     - name: Install dependencies
       run: npm ci
-      
-    - name: Generate high-quality blog post (if scheduled)
-      if: github.event_name == 'schedule'
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      run: |
-        npm run generate-post-enhanced
-        
-    - name: Commit and push new content (if any)
-      if: github.event_name == 'schedule'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add src/content/
-        git diff --staged --quiet || (git commit -m "Add new AI-generated blog post [skip ci]" && git push)
         
     - name: Build Next.js app
       env:

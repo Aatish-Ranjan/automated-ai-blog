@@ -1,26 +1,25 @@
 # AI Blog Website
 
-A modern, automated blog website powered by AI with daily content generation, SEO optimization, and automated deployment.
+A modern blog website with AI-powered content generation using local Ollama models and manual deployment control.
 
 ## 🚀 Features
 
-- **AI-Generated Content**: Daily blog posts created using OpenAI's GPT
+- **Local AI Content Generation**: Blog posts created using local Ollama AI models
 - **SEO Optimized**: Dynamic meta tags, sitemap, and RSS feed
-- **Automated Publishing**: GitHub Actions for continuous deployment
+- **Manual Deployment**: GitHub Actions for deployment when you push changes
 - **Modern Design**: Clean, responsive UI with Tailwind CSS
 - **Fast Performance**: Static site generation with Next.js
 - **Social Sharing**: Built-in social media sharing buttons
 - **Search & Filter**: Full-text search and tag filtering
-- **Analytics**: Google Analytics integration
 
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 14 (Static Export)
 - **Styling**: Tailwind CSS + Tailwind Typography
-- **Content**: Markdown/MDX with gray-matter
-- **AI**: OpenAI GPT API
-- **Deployment**: GitHub Pages / Vercel
-- **Automation**: GitHub Actions
+- **Content**: Markdown with gray-matter
+- **AI**: Local Ollama models
+- **Deployment**: GitHub Pages
+- **Automation**: GitHub Actions for deployment only
 
 ## 📁 Project Structure
 
@@ -28,14 +27,15 @@ A modern, automated blog website powered by AI with daily content generation, SE
 ai-blog-website/
 ├── .github/workflows/     # GitHub Actions workflows
 ├── public/               # Static assets
-├── scripts/              # Automation scripts
+├── scripts/              # Content generation scripts
 ├── src/
 │   ├── components/       # React components
 │   ├── content/         # Blog posts (Markdown)
+│   ├── data/            # Topic pools and usage history
 │   ├── lib/             # Utility functions
 │   ├── pages/           # Next.js pages
 │   └── styles/          # CSS styles
-├── .env.example         # Environment variables template
+├── templates/           # Blog post templates
 ├── next.config.js       # Next.js configuration
 ├── tailwind.config.js   # Tailwind CSS configuration
 └── package.json         # Dependencies and scripts
@@ -43,7 +43,12 @@ ai-blog-website/
 
 ## 🚀 Quick Start
 
-### 1. Setup Environment
+### 1. Prerequisites
+
+- Node.js 18+ installed
+- Ollama installed locally with ai-blog-writer-1b model
+
+### 2. Setup Environment
 
 ```bash
 # Clone the repository
@@ -62,10 +67,8 @@ cp .env.example .env.local
 ```
 
 ### 2. Run Initial Setup
-
-```bash
-# Create sample blog posts and setup files
-npm run setup
+# Install dependencies
+npm install
 ```
 
 ### 3. Development
@@ -74,39 +77,37 @@ npm run setup
 # Start development server
 npm run dev
 
-# Generate a new AI blog post
-npm run generate-post
+# Generate a new AI blog post using local Ollama
+npm run generate-post-local
+
+# Generate RSS feed
+npm run generate-rss
 
 # Build for production
 npm run build
-npm run export
 ```
 
 ### 4. Deployment
 
-#### GitHub Pages
+#### GitHub Pages (Automated)
 1. Push your code to GitHub
 2. Enable GitHub Pages in repository settings
-3. Set up GitHub secrets:
-   - `OPENAI_API_KEY`: Your OpenAI API key
-   - `SITE_URL`: Your GitHub Pages URL
-
-#### Vercel (Optional)
-1. Connect your repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push
+3. The GitHub Action will automatically deploy on push to main branch
+4. Manual deployment trigger available in Actions tab
 
 ## 🔧 Configuration
 
-### Environment Variables
+### Local AI Setup
 
-```env
-# Required
-OPENAI_API_KEY=your_openai_api_key_here
-SITE_URL=https://yourdomain.github.io
+Ensure Ollama is running locally with the required model:
 
-# Optional
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
+```bash
+# Start Ollama service
+ollama serve
+
+# Verify model is available
+ollama list
+# Should show: ai-blog-writer-1b
 ```
 
 ### Customization
@@ -141,42 +142,34 @@ Write your blog post content here using Markdown.
 ### AI-Generated Posts
 
 ```bash
-# Generate a single post
-npm run generate-post
+# Generate a single post using local AI
+npm run generate-post-local
 
 # Posts are automatically created in src/content/
 ```
 
-## 🚀 Deployment & Automation
+## 🚀 Deployment
 
 ### GitHub Actions
 
 The included workflow (`deploy.yml`) automatically:
-- Generates new content daily at 9 AM UTC
-- Builds and deploys to GitHub Pages
+- Builds and deploys to GitHub Pages when you push to main
 - Updates sitemap and RSS feed
-- Commits new content to repository
+- Can be manually triggered from GitHub Actions tab
 
-### Manual Deployment
+### Manual Workflow
 
-```bash
-# Build and export
-npm run build
-npm run export
+1. Generate content locally: `npm run generate-post-local`
+2. Commit and push changes to main branch
+3. GitHub Actions automatically deploys your updated site
 
-# Deploy to GitHub Pages
-npm run deploy
-```
+## 📊 Available Scripts
 
-## 📊 Analytics & SEO
-
-### Google Analytics
-Add your GA tracking ID to `.env.local`:
-```
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-```
-
-### SEO Features
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run generate-post-local` - Generate blog post with local AI
+- `npm run generate-rss` - Update RSS feed
+- `npm run deploy` - Manual deployment helper
 - Dynamic meta tags
 - Open Graph tags
 - Twitter Card support
