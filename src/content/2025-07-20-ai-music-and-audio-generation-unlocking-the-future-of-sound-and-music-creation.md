@@ -1,16 +1,18 @@
 ---
-title: "AI Music and Audio Generation: Unlocking the Future of Sound and Music Creation"
-metaTitle: "AI Music and Audio Generation: Unlocking the Future of Sound and Music Creation"
-metaDescription: "Learn about AI Music and Audio Generation with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of AI Music and Audio Generation in this detailed guide."
-date: "2025-07-20"
-author: "AI Blog"
-tags: ["AI music", "audio generation", "creativity"]
-category: "Technology"
-targetKeyword: "AI Music and Audio Generation"
-image: "/images/blog/default-blog-image.jpg"
+title: >-
+  AI Music and Audio Generation: Unlocking the Future of Sound and Music
+  Creation
+excerpt: >-
+  Explore the essential concepts and practical applications of AI Music and
+  Audio Generation in this detailed guide.
+date: '2025-07-20'
+author: AI Powered Blog
+tags:
+  - AI music
+  - audio generation
+  - creativity
+image: /images/pixabay-9271509.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 # AI Music and Audio Generation: Unlocking the Future of Sound and Music Creation

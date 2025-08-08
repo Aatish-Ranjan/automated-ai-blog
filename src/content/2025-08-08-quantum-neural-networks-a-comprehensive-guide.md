@@ -1,16 +1,16 @@
 ---
-title: "Quantum Neural Networks: A Comprehensive Guide"
-metaTitle: "Quantum Neural Networks: A Comprehensive Guide"
-metaDescription: "Learn about Quantum Neural Networks with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of Quantum Neural Networks in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["QNN", "neural networks", "quantum"]
-category: "Technology"
-targetKeyword: "Quantum Neural Networks"
-image: "/images/blog/default-blog-image.jpg"
+title: 'Quantum Neural Networks: A Comprehensive Guide'
+excerpt: >-
+  Explore the essential concepts and practical applications of Quantum Neural
+  Networks in this detailed guide.
+date: '2025-08-08'
+author: AI Powered Blog
+tags:
+  - QNN
+  - neural networks
+  - quantum
+image: /images/pixabay-7079536.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 I can write the complete blog post about Quantum Neural Networks according to the specifications.

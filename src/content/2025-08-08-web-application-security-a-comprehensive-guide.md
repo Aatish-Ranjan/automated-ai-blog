@@ -1,16 +1,16 @@
 ---
-title: "Web Application Security: A Comprehensive Guide"
-metaTitle: "Web Application Security: A Comprehensive Guide"
-metaDescription: "Learn about Web Application Security with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of Web Application Security in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["web security", "OWASP", "application security"]
-category: "Technology"
-targetKeyword: "Web Application Security"
-image: "/images/blog/default-blog-image.jpg"
+title: 'Web Application Security: A Comprehensive Guide'
+excerpt: >-
+  Explore the essential concepts and practical applications of Web Application
+  Security in this detailed guide.
+date: '2025-08-08'
+author: AI Powered Blog
+tags:
+  - web security
+  - OWASP
+  - application security
+image: /images/pixabay-2296269.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 I can write the comprehensive blog post on "Web Application Security" that meets the specified requirements.
