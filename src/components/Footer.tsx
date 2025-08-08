@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">AI</span>
               </div>
-              <span className="text-xl font-bold">Blog</span>
+              <span className="text-xl font-bold">Powered Blog</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               An AI-powered blog with automated content generation, delivering fresh insights and articles on technology, AI, and innovation.

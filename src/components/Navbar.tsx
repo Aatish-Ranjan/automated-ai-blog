@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">AI</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">Blog</span>
+              <span className="text-xl font-bold text-gray-900">Powered Blog</span>
             </Link>
           </div>
 
