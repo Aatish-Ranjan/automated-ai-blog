@@ -1,8 +1,10 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const OLLAMA_BASE_URL = 'http://localhost:11434';
+const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 
 // Import Enhanced Prompt Engine
 const EnhancedPromptEngine = require('../src/lib/enhancedPromptEngine.js');
@@ -262,6 +264,28 @@ async function generateBlogPost(modelName) {
       readingTime: sanitizeYamlValue(blogData.readingTime || "8 min read")
     };
     
+    // Fetch relevant image from Pixabay
+    let imagePath = "/images/blog/default-blog-image.jpg";
+    try {
+      console.log('🖼️ Fetching relevant image from Pixabay...');
+      const imageKeywords = extractKeywordsForImage(finalBlogData.title, finalBlogData.content, finalBlogData.tags);
+      console.log(`🔍 Image search keywords: ${imageKeywords}`);
+      
+      const imageData = await fetchPixabayImage(imageKeywords);
+      if (imageData) {
+        console.log(`📥 Found image: ${imageData.tags} (${imageData.webformatWidth}x${imageData.webformatHeight})`);
+        
+        // Download the image
+        const downloadedPath = await downloadImage(imageData.webformatURL, slug);
+        if (downloadedPath) {
+          imagePath = `/images/blog/${path.basename(downloadedPath)}`;
+          console.log(`✅ Image downloaded: ${imagePath}`);
+        }
+      }
+    } catch (error) {
+      console.warn('⚠️ Failed to fetch Pixabay image, using default:', error.message);
+    }
+
     // Create frontmatter
     const frontmatter = `---
 title: "${finalBlogData.title}"
@@ -273,7 +297,7 @@ author: "AI Blog"
 tags: [${finalBlogData.tags.map(tag => `"${tag}"`).join(', ')}]
 category: "${finalBlogData.category}"
 targetKeyword: "${finalBlogData.targetKeyword}"
-image: "/images/blog/default-blog-image.jpg"
+image: "${imagePath}"
 featured: false
 readingTime: "${finalBlogData.readingTime}"
 ---
@@ -314,6 +338,7 @@ readingTime: "${finalBlogData.readingTime}"
       category: finalBlogData.category,
       targetKeyword: finalBlogData.targetKeyword,
       readingTime: finalBlogData.readingTime,
+      imagePath,
       selectedTopic: selectedTopic
     };
     
@@ -321,6 +346,111 @@ readingTime: "${finalBlogData.readingTime}"
     console.error('Error generating blog post:', error);
     throw error;
   }
+}
+
+// Image fetching functions
+function extractKeywordsForImage(title, content, tags) {
+  // Start with title keywords
+  let keywords = title.toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(word => word.length > 3)
+    .slice(0, 3);
+  
+  // Add relevant tags
+  if (tags && Array.isArray(tags)) {
+    keywords = keywords.concat(tags.slice(0, 2));
+  }
+  
+  // Look for key technical terms in content
+  const commonTechTerms = [
+    'artificial intelligence', 'machine learning', 'technology', 'software', 
+    'development', 'programming', 'web', 'mobile', 'cloud', 'security', 
+    'blockchain', 'automation', 'digital', 'innovation', 'business', 
+    'marketing', 'design', 'science', 'research', 'analysis', 'data',
+    'analytics', 'computing', 'network', 'database', 'algorithm'
+  ];
+  
+  const contentLower = content.toLowerCase();
+  const foundTerms = commonTechTerms.filter(term => contentLower.includes(term)).slice(0, 3);
+  
+  // Remove duplicates and combine
+  const allKeywords = [...new Set([...keywords, ...foundTerms])];
+  
+  return allKeywords.slice(0, 5).join(' ');
+}
+
+async function fetchPixabayImage(query) {
+  if (!PIXABAY_API_KEY) {
+    console.log('⚠️ No Pixabay API key found, skipping image fetch');
+    return null;
+  }
+
+  try {
+    console.log(`🖼️ Searching for image with query: "${query}"`);
+    
+    const response = await axios.get('https://pixabay.com/api/', {
+      params: {
+        key: PIXABAY_API_KEY,
+        q: query,
+        image_type: 'photo',
+        orientation: 'horizontal',
+        category: 'business,computer,education,science,people',
+        min_width: 1920,
+        min_height: 1080,
+        safesearch: 'true',
+        order: 'popular',
+        per_page: 10
+      }
+    });
+
+    if (response.data && response.data.hits && response.data.hits.length > 0) {
+      const image = response.data.hits[0];
+      console.log(`✅ Found image: ${image.tags} (${image.imageWidth}x${image.imageHeight})`);
+      return {
+        url: image.largeImageURL || image.webformatURL,
+        tags: image.tags,
+        user: image.user
+      };
+    } else {
+      console.log('❌ No suitable images found on Pixabay');
+      return null;
+    }
+  } catch (error) {
+    console.error('❌ Error fetching image from Pixabay:', error.message);
+    return null;
+  }
+}
+
+function downloadImage(url, filename) {
+  return new Promise((resolve, reject) => {
+    console.log(`📥 Downloading image: ${filename}`);
+    
+    const filePath = path.join(process.cwd(), 'public', 'images', 'blog', filename);
+    const file = fs.createWriteStream(filePath);
+    
+    https.get(url, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download image: ${response.statusCode}`));
+        return;
+      }
+      
+      response.pipe(file);
+      
+      file.on('finish', () => {
+        file.close();
+        console.log(`✅ Image downloaded: ${filename}`);
+        resolve(filePath);
+      });
+      
+      file.on('error', (error) => {
+        fs.unlink(filePath, () => {}); // Clean up partial file
+        reject(error);
+      });
+    }).on('error', (error) => {
+      reject(error);
+    });
+  });
 }
 
 async function main() {
