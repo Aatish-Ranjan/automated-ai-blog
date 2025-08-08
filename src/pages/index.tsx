@@ -23,7 +23,7 @@ export default function Home({ recentPosts }: HomeProps) {
               Smartiyo
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Exploring the intersection of AI, technology, and human innovation through thoughtful analysis and insights.
+              Exploring technology, innovation, and AI insights through thoughtful analysis and expert perspectives.
             </p>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function Home({ recentPosts }: HomeProps) {
               Latest Posts
             </h2>
             <p className="text-gray-600">
-              Discover insights on AI, technology, and innovation
+              Discover insights on technology, innovation, and AI
             </p>
           </div>
 
@@ -129,7 +129,7 @@ export default function Home({ recentPosts }: HomeProps) {
             <div className="text-center py-12">
               <h3 className="text-lg font-medium text-gray-900 mb-2">Welcome to Smartiyo</h3>
               <p className="text-gray-500">
-                Our AI-powered blog will start publishing thoughtful articles soon.
+                Our blog powered by AI will start publishing thoughtful articles soon.
               </p>
             </div>
           )}
@@ -157,7 +157,7 @@ export default function Home({ recentPosts }: HomeProps) {
             Stay in the Loop
           </h2>
           <p className="text-gray-600 mb-8">
-            Get notified when we publish new articles about AI, technology, and innovation.
+            Get notified when we publish new articles about technology, innovation, and AI insights.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
