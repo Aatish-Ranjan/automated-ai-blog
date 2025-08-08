@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { useAdmin } from '@/contexts/AdminContext';
 
 interface BlogPost {
   slug: string;
@@ -244,6 +245,7 @@ const PostEditor: React.FC<{
   onSave: () => void;
   onCancel: () => void;
 }> = ({ post, onSave, onCancel }) => {
+  const { addPendingChange } = useAdmin();
   const [formData, setFormData] = useState({
     title: post?.title || '',
     excerpt: post?.excerpt || '',
@@ -252,6 +254,7 @@ const PostEditor: React.FC<{
     image: post?.image || '',
     featured: post?.featured || false,
   });
+  const [originalData, setOriginalData] = useState<any>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   // Load full content if editing existing post
@@ -266,14 +269,23 @@ const PostEditor: React.FC<{
       const response = await fetch(`/api/admin/posts/${slug}/content`);
       if (response.ok) {
         const data = await response.json();
-        setFormData(prev => ({ ...prev, content: data.content }));
+        const fullPostData = {
+          title: post?.title || '',
+          excerpt: post?.excerpt || '',
+          content: data.content,
+          tags: post?.tags.join(', ') || '',
+          image: post?.image || '',
+          featured: post?.featured || false,
+        };
+        setFormData(fullPostData);
+        setOriginalData(fullPostData); // Store original data for undo
       }
     } catch (error) {
       console.error('Failed to load post content:', error);
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = async (deployImmediately = false) => {
     if (!formData.title.trim() || !formData.content.trim()) {
       alert('Please fill in title and content');
       return;
@@ -281,22 +293,51 @@ const PostEditor: React.FC<{
 
     setIsSaving(true);
     try {
-      const response = await fetch('/api/admin/posts', {
-        method: post ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          slug: post?.slug,
-          tags: formData.tags.split(',').map(tag => tag.trim()).filter(Boolean),
-        }),
-      });
+      const saveData = {
+        ...formData,
+        slug: post?.slug,
+        tags: formData.tags.split(',').map(tag => tag.trim()).filter(Boolean),
+        skipDeploy: !deployImmediately,
+      };
 
-      const data = await response.json();
-      if (data.success) {
-        alert('✅ Post saved and deployed successfully!');
-        onSave();
+      if (deployImmediately) {
+        // Save and deploy immediately
+        const response = await fetch('/api/admin/posts', {
+          method: post ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(saveData),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          alert('✅ Post saved and deployed successfully!');
+          onSave();
+        } else {
+          alert('❌ Failed to save post: ' + data.message);
+        }
       } else {
-        alert('❌ Failed to save post: ' + data.message);
+        // Save without deploying and add to pending changes
+        const response = await fetch('/api/admin/posts', {
+          method: post ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(saveData),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          // Add to pending changes for batch deployment
+          addPendingChange({
+            type: 'post',
+            description: `Update post: ${formData.title}`,
+            data: saveData,
+            originalData: originalData,
+          });
+          
+          alert('✅ Post saved! Use the batch deployment panel to deploy when ready.');
+          onSave();
+        } else {
+          alert('❌ Failed to save post: ' + data.message);
+        }
       }
     } catch (error) {
       alert('❌ Error saving post');
@@ -406,18 +447,27 @@ const PostEditor: React.FC<{
 
         <div className="flex justify-end space-x-3 p-6 border-t bg-gray-50">
           <button
-            onClick={onCancel}
+            onClick={() => onCancel()}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             Cancel
           </button>
-          <button
-            onClick={handleSave}
-            disabled={isSaving}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-          >
-            {isSaving ? 'Saving...' : 'Save & Deploy'}
-          </button>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => handleSave(false)}
+              disabled={isSaving}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+            >
+              {isSaving ? 'Saving...' : 'Save'}
+            </button>
+            <button
+              onClick={() => handleSave(true)}
+              disabled={isSaving}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            >
+              {isSaving ? 'Saving...' : 'Save & Deploy'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

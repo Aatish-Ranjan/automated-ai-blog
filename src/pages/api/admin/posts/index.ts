@@ -89,7 +89,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePut(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { slug, title, excerpt, content, tags, image, featured } = req.body;
+    const { slug, title, excerpt, content, tags, image, featured, skipDeploy } = req.body;
 
     if (!slug || !title || !content) {
       return res.status(400).json({ 
@@ -129,13 +129,19 @@ async function handlePut(req: NextApiRequest, res: NextApiResponse) {
     // Write file
     fs.writeFileSync(filePath, markdownContent);
 
-    // Auto-commit and deploy
-    await autoCommitAndDeploy(`Update post: ${title}`);
-
-    res.status(200).json({ 
-      success: true, 
-      message: 'Post updated and deployed successfully' 
-    });
+    // Only auto-commit and deploy if not skipping deployment
+    if (!skipDeploy) {
+      await autoCommitAndDeploy(`Update post: ${title}`);
+      res.status(200).json({ 
+        success: true, 
+        message: 'Post updated and deployed successfully' 
+      });
+    } else {
+      res.status(200).json({ 
+        success: true, 
+        message: 'Post updated successfully (not deployed)' 
+      });
+    }
 
   } catch (error) {
     console.error('Failed to update post:', error);

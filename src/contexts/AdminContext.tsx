@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface PendingChange {
   id: string;
-  type: 'homepage' | 'content' | 'settings';
+  type: 'homepage' | 'content' | 'settings' | 'post';
   description: string;
   data: any;
   originalData?: any; // Store original values for undo
@@ -94,6 +94,14 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         });
         break;
       
+      case 'post':
+        await fetch('/api/admin/posts', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...change.originalData, skipDeploy: true }),
+        });
+        break;
+      
       case 'content':
         // Handle content restoration if needed
         break;
@@ -151,6 +159,14 @@ export function AdminProvider({ children }: { children: ReactNode }) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(change.data),
+        });
+        break;
+      
+      case 'post':
+        await fetch('/api/admin/posts', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...change.data, skipDeploy: true }),
         });
         break;
       

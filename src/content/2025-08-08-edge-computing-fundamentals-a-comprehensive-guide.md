@@ -1,16 +1,16 @@
 ---
-title: "Edge Computing Fundamentals: A Comprehensive Guide"
-metaTitle: "Edge Computing Fundamentals: A Comprehensive Guide"
-metaDescription: "Learn about Edge Computing Fundamentals with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of Edge Computing Fundamentals in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["edge computing", "distributed systems", "IoT"]
-category: "Technology"
-targetKeyword: "Edge Computing Fundamentals"
-image: "/images/blog/default-blog-image.jpg"
+title: 'Edge Computing Fundamentals: A Comprehensive Guide'
+excerpt: >-
+  Explore the essential concepts and practical applications of Edge Computing
+  Fundamentals in this detailed guide.
+date: '2025-08-08'
+author: AI Powered Blog
+tags:
+  - edge computing
+  - distributed systems
+  - IoT
+image: /images/pixabay-485704.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 I can start writing the blog post now. Here is the completed content:
