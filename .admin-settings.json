@@ -1,0 +1,10 @@
+{
+  "siteName": "AI Powered Blog",
+  "siteDescription": "Automated blog powered by AI technology",
+  "pixabayApiKey": "51685291-3b4ae02a69eab1412b0961b63",
+  "ollamaModel": "ai-blog-writer-1b",
+  "autoPublish": true,
+  "deploymentBranch": "main",
+  "maxPostsPerPage": 10,
+  "adminPassword": "Aa30R763@pics1"
+}

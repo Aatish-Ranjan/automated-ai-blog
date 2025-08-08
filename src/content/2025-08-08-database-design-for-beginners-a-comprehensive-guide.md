@@ -1,16 +1,17 @@
 ---
-title: "Database Design for Beginners: A Comprehensive Guide"
-metaTitle: "Database Design for Beginners: A Comprehensive Guide"
-metaDescription: "Learn about Database Design for Beginners with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of Database Design for Beginners in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["database", "design", "SQL", "tutorial"]
-category: "Technology"
-targetKeyword: "Database Design for Beginners"
-image: "/images/blog/default-blog-image.jpg"
+title: 'Database Design for Beginners: A Comprehensive Guide'
+excerpt: >-
+  Explore the essential concepts and practical applications of Database Design
+  for Beginners in this detailed guide.
+date: '2025-08-08'
+author: AI Powered Blog
+tags:
+  - database
+  - design
+  - SQL
+  - tutorial
+image: /images/pixabay-1235959.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 I'll write the complete blog post about "Database Design for Beginners" following the provided specifications.
