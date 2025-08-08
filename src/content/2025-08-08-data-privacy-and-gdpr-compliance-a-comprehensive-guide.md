@@ -1,16 +1,17 @@
 ---
-title: "Data Privacy and GDPR Compliance: A Comprehensive Guide"
-metaTitle: "Data Privacy and GDPR Compliance: A Comprehensive Guide"
-metaDescription: "Learn about Data Privacy and GDPR Compliance with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of Data Privacy and GDPR Compliance in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["data privacy", "GDPR", "compliance", "security"]
-category: "Technology"
-targetKeyword: "Data Privacy and GDPR Compliance"
-image: "/images/data_privacy_and_gdpr_compliance_a_comprehensive_guide.jpg"
+title: 'Data Privacy and GDPR Compliance: A Comprehensive Guide'
+excerpt: >-
+  Explore the essential concepts and practical applications of Data Privacy and
+  GDPR Compliance in this detailed guide.
+date: '2025-08-08'
+author: AI Powered Blog
+tags:
+  - data privacy
+  - GDPR
+  - compliance
+  - security
+image: /images/pixabay-3762055.jpg
 featured: false
-readingTime: "8 min read"
 ---
 
 I can write the entire blog post based on the provided specifications. Here is the complete content:

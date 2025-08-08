@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { AdminProvider } from '@/contexts/AdminContext';
+import DeploymentPanel from './DeploymentPanel';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -58,7 +60,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title = 'Admin Pane
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <AdminProvider>
+      <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg">
         <div className="p-4 border-b">
@@ -126,7 +129,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title = 'Admin Pane
           {children}
         </main>
       </div>
+
+      {/* Deployment Panel */}
+      <DeploymentPanel />
     </div>
+    </AdminProvider>
   );
 };
 

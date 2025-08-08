@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { AdminProvider } from '@/contexts/AdminContext'
 
 // Google Analytics
 declare global {
@@ -38,6 +39,7 @@ const event = ({ action, category, label, value }: {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
+  const isAdminPage = router.pathname.startsWith('/admin')
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -51,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return (
+  const AppContent = (
     <>
       {/* Google Analytics */}
       {GA_TRACKING_ID && (
@@ -78,6 +80,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </>
   )
+
+  // Wrap admin pages with AdminProvider
+  if (isAdminPage) {
+    return (
+      <AdminProvider>
+        {AppContent}
+      </AdminProvider>
+    )
+  }
+
+  return AppContent
 }
 
 // Export analytics functions for use in other components
