@@ -22,7 +22,7 @@ category: Technology
 targetKeyword: History of Artificial Intelligence
 image: >-
   /images/the_history_of_artificial_intelligence_a_comprehensive_journey_from_its_beginnings_to_the_present_day.jpg
-featured: true
+featured: false
 readingTime: 8 min read
 ---
 
