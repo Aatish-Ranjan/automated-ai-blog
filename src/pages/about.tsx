@@ -4,23 +4,23 @@ import Layout from '@/components/Layout';
 export default function About() {
   return (
     <Layout
-      title="About - AI Blog"
+      title="About - AI Powered Blog"
       description="Learn about our AI-powered blog platform that generates high-quality content automatically."
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">About AI Blog</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">About AI Powered Blog</h1>
           
           <div className="mb-8">
             <img 
               src="/images/ai-blog-hero.jpg" 
-              alt="AI Blog Platform" 
+              alt="AI Powered Blog Platform" 
               className="w-full h-64 object-cover rounded-lg"
             />
           </div>
 
           <p className="text-xl text-gray-600 mb-8">
-            Welcome to AI Blog, where artificial intelligence meets content creation to deliver 
+            Welcome to AI Powered Blog, where artificial intelligence meets content creation to deliver 
             fresh, insightful articles on technology, innovation, and the future.
           </p>
 

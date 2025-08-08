@@ -33,7 +33,7 @@ export default function BlogIndex({ posts, tags }: BlogIndexProps) {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            AI Blog Articles
+            AI Powered Blog Articles
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Discover insights on technology, AI, and innovation through our automated content generation.

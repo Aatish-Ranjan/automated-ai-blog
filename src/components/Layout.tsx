@@ -13,12 +13,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ 
   children, 
-  title = 'AI Blog - Automated Content Generation',
+  title = 'AI Powered Blog - Automated Content Generation',
   description = 'A modern blog powered by AI with automated content generation and SEO optimization',
   image = '/images/og-image.jpg',
   url = ''
 }) => {
-  const siteTitle = 'AI Blog';
+  const siteTitle = 'AI Powered Blog';
   const fullTitle = title.includes(siteTitle) ? title : `${title} | ${siteTitle}`;
   const fullUrl = `${process.env.SITE_URL}${url}`;
 
@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({
         
         {/* Additional SEO tags */}
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="AI Blog" />
+        <meta name="author" content="AI Powered Blog" />
         <link rel="canonical" href={fullUrl} />
         
         {/* RSS Feed */}

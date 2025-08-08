@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {currentYear} AI Blog. All rights reserved. Powered by AI and automation.</p>
+          <p>&copy; {currentYear} AI Powered Blog. All rights reserved. Powered by AI and automation.</p>
         </div>
       </div>
     </footer>
