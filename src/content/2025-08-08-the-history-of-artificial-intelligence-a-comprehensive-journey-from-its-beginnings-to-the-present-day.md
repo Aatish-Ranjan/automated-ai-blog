@@ -1,16 +1,29 @@
 ---
-title: "The History of Artificial Intelligence: A Comprehensive Journey from Its Beginnings to the Present Day"
-metaTitle: "The History of Artificial Intelligence: A Comprehensive Journey from Its Beginnings to the Present Day"
-metaDescription: "Learn about History of Artificial Intelligence with this comprehensive guide covering key concepts, applications, and best practices."
-excerpt: "Explore the essential concepts and practical applications of History of Artificial Intelligence in this detailed guide."
-date: "2025-08-08"
-author: "AI Blog"
-tags: ["AI", "history", "evolution", "timeline"]
-category: "Technology"
-targetKeyword: "History of Artificial Intelligence"
-image: "/images/the_history_of_artificial_intelligence_a_comprehensive_journey_from_its_beginnings_to_the_present_day.jpg"
-featured: false
-readingTime: "8 min read"
+title: >-
+  The History of Artificial Intelligence: A Comprehensive Journey from Its
+  Beginnings to the Present Day
+metaTitle: >-
+  The History of Artificial Intelligence: A Comprehensive Journey from Its
+  Beginnings to the Present Day
+metaDescription: >-
+  Learn about History of Artificial Intelligence with this comprehensive guide
+  covering key concepts, applications, and best practices.
+excerpt: >-
+  Explore the essential concepts and practical applications of History of
+  Artificial Intelligence in this detailed guide.
+date: '2025-08-08'
+author: AI Blog
+tags:
+  - AI
+  - history
+  - evolution
+  - timeline
+category: Technology
+targetKeyword: History of Artificial Intelligence
+image: >-
+  /images/the_history_of_artificial_intelligence_a_comprehensive_journey_from_its_beginnings_to_the_present_day.jpg
+featured: true
+readingTime: 8 min read
 ---
 
 # The History of Artificial Intelligence: A Comprehensive Journey from Its Beginnings to the Present Day
