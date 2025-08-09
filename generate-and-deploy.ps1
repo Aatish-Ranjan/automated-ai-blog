@@ -1,6 +1,10 @@
 #!/usr/bin/env pwsh
 # Generate AI blog post and deploy to GitHub
 
+# Set Ollama models directory to D drive
+$env:OLLAMA_MODELS = "D:\ollama-models"
+Write-Host "Set OLLAMA_MODELS to: $env:OLLAMA_MODELS" -ForegroundColor Blue
+
 Write-Host "Generating AI blog post..." -ForegroundColor Cyan
 npm run generate-post-local
 
