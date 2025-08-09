@@ -161,7 +161,7 @@ export default function ThemeCustomizer() {
         
         // Add to pending changes for batch deployment
         addPendingChange({
-          type: 'theme',
+          type: 'settings',
           description: `Theme customization changes`,
           data: { config: themeConfig },
           originalData: { config: originalThemeConfig },
