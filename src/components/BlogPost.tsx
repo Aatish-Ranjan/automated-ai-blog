@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import type { BlogPost } from '@/lib/blog';
+import AdSense from '@/components/AdSense';
 
 interface BlogPostProps {
   post: BlogPost;
@@ -99,11 +100,29 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
         </div>
       </header>
 
+      {/* Ad: After Article Header */}
+      <div className="mb-8">
+        <AdSense
+          className="block"
+          adFormat="auto"
+          adSlot="1234567890"
+        />
+      </div>
+
       {/* Article Content */}
       <div 
         className="prose prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+
+      {/* Ad: After Article Content */}
+      <div className="mt-8 pt-8 border-t border-gray-200">
+        <AdSense
+          className="block"
+          adFormat="auto"
+          adSlot="0987654321"
+        />
+      </div>
     </article>
   );
 };

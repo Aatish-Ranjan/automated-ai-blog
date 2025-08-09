@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
 import BlogCard from '@/components/BlogCard';
+import AdSense from '@/components/AdSense';
 import { getRecentPosts, BlogPost } from '@/lib/blog';
 
 interface HomeProps {
@@ -73,6 +74,17 @@ export default function Home({ recentPosts }: HomeProps) {
           </div>
         </section>
       )}
+
+      {/* Ad: After Featured Post */}
+      <section className="bg-gray-50 py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AdSense
+            className="block"
+            adFormat="auto"
+            adSlot="1111111111"
+          />
+        </div>
+      </section>
 
       {/* Recent Posts Section */}
       <section className="bg-gray-50 py-16">
@@ -147,6 +159,17 @@ export default function Home({ recentPosts }: HomeProps) {
               </Link>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Ad: Before Newsletter */}
+      <section className="bg-gray-50 py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AdSense
+            className="block"
+            adFormat="auto"
+            adSlot="2222222222"
+          />
         </div>
       </section>
 
